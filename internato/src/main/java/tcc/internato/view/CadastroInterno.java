@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.text.ParseException;
 
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -16,12 +17,14 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
-public class CadastroAluno extends JFrame {
+public class CadastroInterno extends JFrame {
 	private JPanel panel_endereco;
 	private JPanel panel_escolares;
 	private JPanel panel_dados_pessoais;
-	private MaskFormatter ftm_data; // este objeto permite formatar os números
-									// no text.
+	private MaskFormatter ftm_data;
+
+	// este objeto permite formatar os números no text.
+
 	private MaskFormatter ftm_cpf;
 	private MaskFormatter ftm_cep;
 	private ButtonGroup bg = new ButtonGroup();
@@ -44,20 +47,19 @@ public class CadastroAluno extends JFrame {
 	private JLabel label_3;
 	private JFormattedTextField formattedTextField_1;
 	private JLabel label_4;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField tf_turma;
 	private JLabel label_5;
-	private JTextField textField_3;
+	private JTextField tf_quarto;
 	private JLabel label_6;
 	private JLabel label_7;
 	private JTextField textField_4;
 	private JTextField tf_nome_pai;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_5;
-	private JTextField textField_9;
-	private JTextField textField_10;
+	private JTextField tf_profissao_pai;
+	private JTextField tf_nome_mae;
+	private JTextField tf_profissao_mae;
+	private JTextField tf_telefone_pai;
+	private JTextField tf_telefone_mae;
+	private JTextField tf_email_reponsavel;
 	private JTextField textField_11;
 
 	/**
@@ -65,7 +67,7 @@ public class CadastroAluno extends JFrame {
 	 * 
 	 * @throws ParseException
 	 */
-	public CadastroAluno() throws ParseException {
+	public CadastroInterno() throws ParseException {
 		setTitle("Cadastro de Interno");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getContentPane().setBackground(Color.WHITE);
@@ -130,41 +132,47 @@ public class CadastroAluno extends JFrame {
 		formattedTextField_1.setColumns(10);
 		formattedTextField_1.setBounds(367, 142, 136, 25);
 		panel_dados_pessoais.add(formattedTextField_1);
+		panel_escolares.setLayout(null);
 
 		label_4 = new JLabel("Curso");
 		label_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label_4.setBounds(20, 214, 37, 19);
+		label_4.setBounds(19, 88, 37, 19);
 		panel_escolares.add(label_4);
 
-		textField_1 = new JTextField();
-		textField_1.setToolTipText("Informe o curso.");
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField_1.setColumns(10);
-		textField_1.setBounds(67, 211, 196, 25);
-		panel_escolares.add(textField_1);
-
-		textField_2 = new JTextField();
-		textField_2.setToolTipText("Informe a turma.");
-		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField_2.setColumns(10);
-		textField_2.setBounds(397, 211, 136, 25);
-		panel_escolares.add(textField_2);
+		tf_turma = new JTextField();
+		tf_turma.setToolTipText("Informe o curso.");
+		tf_turma.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		tf_turma.setColumns(10);
+		tf_turma.setBounds(77, 135, 53, 25);
+		panel_escolares.add(tf_turma);
 
 		label_5 = new JLabel("Turma");
 		label_5.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label_5.setBounds(343, 214, 44, 19);
+		label_5.setBounds(19, 138, 44, 19);
 		panel_escolares.add(label_5);
 
-		textField_3 = new JTextField();
-		textField_3.setToolTipText("Informe o quarto.");
-		textField_3.setColumns(10);
-		textField_3.setBounds(75, 295, 86, 20);
-		panel_escolares.add(textField_3);
+		tf_quarto = new JTextField();
+		tf_quarto.setToolTipText("Informe o quarto.");
+		tf_quarto.setColumns(10);
+		tf_quarto.setBounds(77, 188, 53, 20);
+		panel_escolares.add(tf_quarto);
 
 		label_6 = new JLabel("Quarto");
 		label_6.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label_6.setBounds(20, 294, 45, 19);
+		label_6.setBounds(19, 187, 45, 19);
 		panel_escolares.add(label_6);
+
+		JLabel lblDadosEscolares = new JLabel("DADOS ESCOLARES");
+		lblDadosEscolares.setFont(new Font("Cambria Math", Font.BOLD, 19));
+		lblDadosEscolares.setBounds(28, 25, 221, 23);
+		panel_escolares.add(lblDadosEscolares);
+
+		JComboBox comboBox_curso = new JComboBox();
+		comboBox_curso.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		comboBox_curso.setModel(
+				new DefaultComboBoxModel(new String[] { "", "Agropecuária", "Agroindústria", "Informática" }));
+		comboBox_curso.setBounds(77, 89, 160, 20);
+		panel_escolares.add(comboBox_curso);
 
 		label_7 = new JLabel("Idade");
 		label_7.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -195,72 +203,72 @@ public class CadastroAluno extends JFrame {
 		lblProfissoDoPai.setBounds(15, 290, 103, 19);
 		panel_dados_pessoais.add(lblProfissoDoPai);
 
-		textField_6 = new JTextField();
-		textField_6.setToolTipText("Informe o nome completo.");
-		textField_6.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField_6.setColumns(10);
-		textField_6.setBounds(147, 287, 248, 25);
-		panel_dados_pessoais.add(textField_6);
+		tf_profissao_pai = new JTextField();
+		tf_profissao_pai.setToolTipText("Informe o nome completo.");
+		tf_profissao_pai.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		tf_profissao_pai.setColumns(10);
+		tf_profissao_pai.setBounds(147, 287, 248, 25);
+		panel_dados_pessoais.add(tf_profissao_pai);
 
 		JLabel lblNomeMe = new JLabel("Nome M\u00E3e");
 		lblNomeMe.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNomeMe.setBounds(20, 387, 103, 19);
 		panel_dados_pessoais.add(lblNomeMe);
 
-		textField_7 = new JTextField();
-		textField_7.setToolTipText("Informe o nome completo.");
-		textField_7.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField_7.setColumns(10);
-		textField_7.setBounds(147, 384, 494, 25);
-		panel_dados_pessoais.add(textField_7);
+		tf_nome_mae = new JTextField();
+		tf_nome_mae.setToolTipText("Informe o nome completo.");
+		tf_nome_mae.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		tf_nome_mae.setColumns(10);
+		tf_nome_mae.setBounds(147, 384, 494, 25);
+		panel_dados_pessoais.add(tf_nome_mae);
 
 		JLabel lblProfissoDaMe = new JLabel("Profiss\u00E3o da m\u00E3e");
 		lblProfissoDaMe.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblProfissoDaMe.setBounds(20, 423, 122, 19);
 		panel_dados_pessoais.add(lblProfissoDaMe);
 
-		textField_8 = new JTextField();
-		textField_8.setToolTipText("Informe o nome completo.");
-		textField_8.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField_8.setColumns(10);
-		textField_8.setBounds(147, 420, 248, 25);
-		panel_dados_pessoais.add(textField_8);
+		tf_profissao_mae = new JTextField();
+		tf_profissao_mae.setToolTipText("Informe o nome completo.");
+		tf_profissao_mae.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		tf_profissao_mae.setColumns(10);
+		tf_profissao_mae.setBounds(147, 420, 248, 25);
+		panel_dados_pessoais.add(tf_profissao_mae);
 
 		JLabel lblTelefoneDoPai = new JLabel("Telefone do pai");
 		lblTelefoneDoPai.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblTelefoneDoPai.setBounds(15, 342, 108, 19);
 		panel_dados_pessoais.add(lblTelefoneDoPai);
 
-		textField_5 = new JTextField();
-		textField_5.setToolTipText("Informe o nome completo.");
-		textField_5.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField_5.setColumns(10);
-		textField_5.setBounds(147, 339, 248, 25);
-		panel_dados_pessoais.add(textField_5);
+		tf_telefone_pai = new JTextField();
+		tf_telefone_pai.setToolTipText("Informe o nome completo.");
+		tf_telefone_pai.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		tf_telefone_pai.setColumns(10);
+		tf_telefone_pai.setBounds(147, 339, 248, 25);
+		panel_dados_pessoais.add(tf_telefone_pai);
 
 		JLabel lblTelefoneDaMe = new JLabel("Telefone da m\u00E3e");
 		lblTelefoneDaMe.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblTelefoneDaMe.setBounds(20, 470, 112, 19);
 		panel_dados_pessoais.add(lblTelefoneDaMe);
 
-		textField_9 = new JTextField();
-		textField_9.setToolTipText("Informe o nome completo.");
-		textField_9.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField_9.setColumns(10);
-		textField_9.setBounds(147, 467, 248, 25);
-		panel_dados_pessoais.add(textField_9);
+		tf_telefone_mae = new JTextField();
+		tf_telefone_mae.setToolTipText("Informe o nome completo.");
+		tf_telefone_mae.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		tf_telefone_mae.setColumns(10);
+		tf_telefone_mae.setBounds(147, 467, 248, 25);
+		panel_dados_pessoais.add(tf_telefone_mae);
 
 		JLabel lblEmailResponsvel = new JLabel("Email Respons\u00E1vel");
 		lblEmailResponsvel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblEmailResponsvel.setBounds(21, 519, 149, 19);
 		panel_dados_pessoais.add(lblEmailResponsvel);
 
-		textField_10 = new JTextField();
-		textField_10.setToolTipText("Informe o nome completo.");
-		textField_10.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField_10.setColumns(10);
-		textField_10.setBounds(210, 516, 248, 25);
-		panel_dados_pessoais.add(textField_10);
+		tf_email_reponsavel = new JTextField();
+		tf_email_reponsavel.setToolTipText("Informe o nome completo.");
+		tf_email_reponsavel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		tf_email_reponsavel.setColumns(10);
+		tf_email_reponsavel.setBounds(210, 516, 361, 25);
+		panel_dados_pessoais.add(tf_email_reponsavel);
 
 		JLabel lblEmailInterno = new JLabel("Email Interno:");
 		lblEmailInterno.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -294,10 +302,10 @@ public class CadastroAluno extends JFrame {
 		lblEstado.setBounds(302, 111, 44, 19);
 		panel_endereco.add(lblEstado);
 
-		JLabel lblProcedncia = new JLabel("Proced\u00EAncia");
-		lblProcedncia.setBounds(320, 255, 77, 19);
-		panel_endereco.add(lblProcedncia);
-		lblProcedncia.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		JLabel lblProcedencia = new JLabel("Proced\u00EAncia");
+		lblProcedencia.setBounds(320, 255, 77, 19);
+		panel_endereco.add(lblProcedencia);
+		lblProcedencia.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
 		JRadioButton radio_procedencia_rural = new JRadioButton("Rural");
 		radio_procedencia_rural.setBounds(427, 253, 72, 23);
@@ -376,15 +384,17 @@ public class CadastroAluno extends JFrame {
 		tf_cep.setBounds(503, 108, 136, 25);
 		panel_endereco.add(tf_cep);
 
-		JLabel lblEndereo = new JLabel("ENDERE\u00C7O");
-		lblEndereo.setFont(new Font("Cambria Math", Font.BOLD, 19));
-		lblEndereo.setBounds(33, 45, 221, 23);
-		panel_endereco.add(lblEndereo);
+		JLabel lblEndereco = new JLabel("ENDERE\u00C7O");
+		lblEndereco.setFont(new Font("Cambria Math", Font.BOLD, 19));
+		lblEndereco.setBounds(33, 26, 221, 23);
+		panel_endereco.add(lblEndereco);
 
-		JButton btnNewButton = new JButton("Cancelar");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton.setBounds(320, 449, 155, 44);
-		panel_endereco.add(btnNewButton);
+		JButton btncancelar = new JButton("Cancelar");
+		btncancelar.setForeground(Color.RED);
+		btncancelar.setBackground(Color.GRAY);
+		btncancelar.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btncancelar.setBounds(320, 449, 155, 44);
+		panel_endereco.add(btncancelar);
 
 		JButton btnSalvar = new JButton("SALVAR");
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -396,11 +406,11 @@ public class CadastroAluno extends JFrame {
 	public void run() {
 		// TODO Auto-generated method stub
 		try {
-			CadastroAluno cadastro_aluno = new CadastroAluno();
-			cadastro_aluno.setVisible(true);
-			cadastro_aluno.setExtendedState(JFrame.NORMAL);
-			cadastro_aluno.setSize(717, 650);
-			cadastro_aluno.setLocationRelativeTo(null);
+			CadastroInterno cadastro_interno = new CadastroInterno();
+			cadastro_interno.setVisible(true);
+			cadastro_interno.setExtendedState(JFrame.NORMAL);
+			cadastro_interno.setSize(717, 650);
+			cadastro_interno.setLocationRelativeTo(null);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
