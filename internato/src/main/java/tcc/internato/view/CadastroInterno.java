@@ -47,9 +47,7 @@ public class CadastroInterno extends JFrame {
 	private JLabel label_3;
 	private JFormattedTextField formattedTextField_1;
 	private JLabel label_4;
-	private JTextField tf_turma;
 	private JLabel label_5;
-	private JTextField tf_quarto;
 	private JLabel label_6;
 	private JLabel label_7;
 	private JTextField textField_4;
@@ -61,6 +59,10 @@ public class CadastroInterno extends JFrame {
 	private JTextField tf_telefone_mae;
 	private JTextField tf_email_reponsavel;
 	private JTextField textField_11;
+	private JLabel lblSrie;
+	private JComboBox comboBox;
+	private JComboBox comboBox_1;
+	private JComboBox comboBox_2;
 
 	/**
 	 * Create the panel.
@@ -139,27 +141,14 @@ public class CadastroInterno extends JFrame {
 		label_4.setBounds(19, 88, 37, 19);
 		panel_escolares.add(label_4);
 
-		tf_turma = new JTextField();
-		tf_turma.setToolTipText("Informe o curso.");
-		tf_turma.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		tf_turma.setColumns(10);
-		tf_turma.setBounds(77, 135, 53, 25);
-		panel_escolares.add(tf_turma);
-
 		label_5 = new JLabel("Turma");
 		label_5.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label_5.setBounds(19, 138, 44, 19);
+		label_5.setBounds(19, 187, 44, 19);
 		panel_escolares.add(label_5);
-
-		tf_quarto = new JTextField();
-		tf_quarto.setToolTipText("Informe o quarto.");
-		tf_quarto.setColumns(10);
-		tf_quarto.setBounds(77, 188, 53, 20);
-		panel_escolares.add(tf_quarto);
 
 		label_6 = new JLabel("Quarto");
 		label_6.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label_6.setBounds(19, 187, 45, 19);
+		label_6.setBounds(19, 236, 45, 19);
 		panel_escolares.add(label_6);
 
 		JLabel lblDadosEscolares = new JLabel("DADOS ESCOLARES");
@@ -173,6 +162,29 @@ public class CadastroInterno extends JFrame {
 				new DefaultComboBoxModel(new String[] { "", "Agropecuária", "Agroindústria", "Informática" }));
 		comboBox_curso.setBounds(77, 89, 160, 20);
 		panel_escolares.add(comboBox_curso);
+		
+		lblSrie = new JLabel("Série");
+		lblSrie.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblSrie.setBounds(19, 139, 44, 19);
+		panel_escolares.add(lblSrie);
+		
+		comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "1º", "2º", "3º"}));
+		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		comboBox.setBounds(77, 140, 62, 20);
+		panel_escolares.add(comboBox);
+		
+		comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}));
+		comboBox_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		comboBox_1.setBounds(77, 237, 68, 20);
+		panel_escolares.add(comboBox_1);
+		
+		comboBox_2 = new JComboBox();
+		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"", "A", "B", "C", "D", "E", "I"}));
+		comboBox_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		comboBox_2.setBounds(73, 188, 68, 20);
+		panel_escolares.add(comboBox_2);
 
 		label_7 = new JLabel("Idade");
 		label_7.setFont(new Font("Tahoma", Font.PLAIN, 15));

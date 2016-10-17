@@ -3,6 +3,7 @@ package tcc.internato.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 //
@@ -17,41 +18,42 @@ import javax.persistence.Id;
 //
 @Entity
 public class Regulamento {
+	@Column (name = "id_regulamento")
 	@Id
-	@GeneratedValue
-	private Long id_regulamento;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
-	@Column(nullable = false)
-	public String apelido_regulamento;
+	@Column(name = "apelido_regulamento", nullable = false)
+	public String apelido;
 	
-	@Column(nullable = false)
-	public String descricao_regulamento;
+	@Column(name = "descricao_regulamento", nullable = false)
+	public String descricao;
 
 	//getters e setters
 	
 	
 	public Long getId_regulamento() {
-		return id_regulamento;
+		return id;
 	}
 
 	public void setId_regulamento(Long id_regulamento) {
-		this.id_regulamento = id_regulamento;
+		this.id = id_regulamento;
 	}
 
 	public String getApelido_regulamento() {
-		return apelido_regulamento;
+		return apelido;
 	}
 
 	public void setApelido_regulamento(String apelido_regulamento) {
-		this.apelido_regulamento = apelido_regulamento;
+		this.apelido = apelido_regulamento;
 	}
 
 	public String getDescricao_regulamento() {
-		return descricao_regulamento;
+		return descricao;
 	}
 
 	public void setDescricao_regulamento(String descricao_regulamento) {
-		this.descricao_regulamento = descricao_regulamento;
+		this.descricao = descricao_regulamento;
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 //
@@ -22,19 +23,19 @@ import javax.persistence.Id;
 
 @Entity
 public class Interno extends Pessoa {
-	@Column
+	@Column(name = "id_interno")
 	@Id 
-	@GeneratedValue
-	private Long id_interno;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	@Column (nullable = false)
 	public String curso;
 	
-	@Column (nullable = false)
-	public int idade_interno;
+	@Column (name = "idade_interno", nullable = false)
+	public int idade;
 	
-	@Column
-	public Date data_nasc_interno;
+	@Column (name = "dt_nasc_interno")
+	public Date dt_nasc;
 	//TODO DATA TIPO CALENDAR?
 	
 	@Column
@@ -56,11 +57,11 @@ public class Interno extends Pessoa {
 	// getters e setters
 	
 	public Long getId_interno() {
-		return id_interno;
+		return id;
 	}
 
 	public void setId_interno(Long id_interno) {
-		this.id_interno = id_interno;
+		this.id = id_interno;
 	}
 
 	public String getCurso() {
@@ -72,11 +73,11 @@ public class Interno extends Pessoa {
 	}
 
 	public int getIdade_interno() {
-		return idade_interno;
+		return idade;
 	}
 
 	public void setIdade_interno(int idade_interno) {
-		this.idade_interno = idade_interno;
+		this.idade = idade_interno;
 	}
 
 	public int getConta_banco() {

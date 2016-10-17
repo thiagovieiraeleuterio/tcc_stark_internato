@@ -4,6 +4,7 @@ package tcc.internato.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
@@ -23,52 +24,52 @@ import javax.persistence.Id;
 
 @Entity
 public class Pessoa {
-	@Column (nullable = false)
+	@Column (name = "id_pessoa")
 	@Id
-	@GeneratedValue
-	private Long id_pessoa;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
-	@Column (nullable = false)
-	private String nome_pessoa;
+	@Column (name = "nome_pessoa", nullable = false)
+	private String nome;
 	
-	@Column (nullable = false)
-	private int cpf_pessoa;
+	@Column (name = "cpf_pessoa", nullable = false)
+	private int cpf;
 	
-	@Column (nullable = false)
-	public String matricula_pessoa;
+	@Column (name = "matricula_pessoa", nullable = false)
+	public String matricula;
 	
 	// getters e setters
 	
 	public Long getId_pessoa() {
-		return id_pessoa;
+		return id;
 	}
 
 	public void setId_pessoa(Long id_pessoa) {
-		this.id_pessoa = id_pessoa;
+		this.id = id_pessoa;
 	}
 
 	public String getNome_pessoa() {
-		return nome_pessoa;
+		return nome;
 	}
 
 	public void setNome_pessoa(String nome_pessoa) {
-		this.nome_pessoa = nome_pessoa;
+		this.nome = nome_pessoa;
 	}
 
 	public int getCpf_pessoa() {
-		return cpf_pessoa;
+		return cpf;
 	}
 
 	public void setCpf_pessoa(int cpf_pessoa) {
-		this.cpf_pessoa = cpf_pessoa;
+		this.cpf = cpf_pessoa;
 	}
 
 	public String getMatricula_pessoa() {
-		return matricula_pessoa;
+		return matricula;
 	}
 
 	public void setMatricula_pessoa(String matricula_pessoa) {
-		this.matricula_pessoa = matricula_pessoa;
+		this.matricula = matricula_pessoa;
 	}
 
 	public String getTelefone_pessoa() {

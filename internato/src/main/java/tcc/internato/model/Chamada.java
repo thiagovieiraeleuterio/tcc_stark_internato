@@ -30,22 +30,7 @@ public class Chamada {
 	@Column(name="id_chamada")
 	public int id;
 	
-	
-	
-	
-	
-	
-	
-	//TODO: COLOCAR NOME DO CAMPO NO BANCO, LOGO NO INICIO DOS ATRIBUTOS DE @COLUMN
-	
-	
-	
-	
-	
-	
-	
-	
-	@Column(nullable = false, name ="data_chamada")
+	@Column(name ="data_chamada", nullable = false)
 	public Date data;
 	
 	@Column(nullable = false)

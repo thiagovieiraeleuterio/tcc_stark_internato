@@ -23,7 +23,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ato_indisciplinar")
 public class AtoIndisciplinar {
-	@Id
+	@Column (name = "id_ato")
+	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int id;
 

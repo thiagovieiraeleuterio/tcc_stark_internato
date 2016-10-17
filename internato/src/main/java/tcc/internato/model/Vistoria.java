@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
@@ -20,14 +21,39 @@ import javax.persistence.Id;
 //
 @Entity
 public class Vistoria {
+	@Column (name = "id_vistoria")
 	@Id
-	@GeneratedValue
-	private Long id_vistoria;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
-	@Column(nullable = false)
-	public Date data_vistoria;
+	@Column(name = "data_vistoria", nullable = false)
+	public Date data;
 	
-	@Column(nullable = false)
-	public int nota_limpeza;
+	@Column(name = "nota_limpeza", nullable = false)
+	public int nota;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+
+	public int getNota() {
+		return nota;
+	}
+
+	public void setNota(int nota) {
+		this.nota = nota;
+	}
 	
 }

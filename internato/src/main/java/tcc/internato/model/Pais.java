@@ -3,6 +3,7 @@ package tcc.internato.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 //
@@ -20,9 +21,10 @@ import javax.persistence.Id;
 
 @Entity
 public class Pais {
+	@Column (name = "id_pais")
 	@Id
-	@GeneratedValue
-	private Long id_pais;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	@Column 
 	public String nome_pai;
@@ -48,11 +50,11 @@ public class Pais {
 	//getters e setters 
 	
 	public Long getId_pais() {
-		return id_pais;
+		return id;
 	}
 
 	public void setId_pais(Long id_pais) {
-		this.id_pais = id_pais;
+		this.id = id_pais;
 	}
 
 	public String getNome_pai() {

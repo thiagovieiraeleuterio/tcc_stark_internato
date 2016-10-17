@@ -1,7 +1,9 @@
 package tcc.internato.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
@@ -20,18 +22,19 @@ import javax.persistence.Id;
 
 @Entity
 public class Servidor extends Pessoa {
+	@Column (name = "id_servidor")
 	@Id
-	@GeneratedValue
-	private Long id_servidor;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	// getter e setter
 	
 	public Long getId_servidor() {
-		return id_servidor;
+		return id;
 	}
 
 	public void setId_servidor(Long id_servidor) {
-		this.id_servidor = id_servidor;
+		this.id = id_servidor;
 	}
 	
 }
