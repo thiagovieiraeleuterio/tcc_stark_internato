@@ -7,7 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.mysql.cj.api.x.Collection;
 
 //
 //
@@ -35,7 +39,14 @@ public class AtoIndisciplinar {
 	public Date data;
 
 	@Column(nullable = false)
-	public Servidor associado;
+	// TODO relacionamento
+	public Servidor servidor;
+	
+	@OneToMany
+    @JoinTable(name="interno_ato", 
+            joinColumns= @JoinColumn(name="id_interno"),
+            inverseJoinColumns= @JoinColumn(name="id_ato"))
+    private Collection <AtoIndisciplinar> atoindisciplinares;
 
 	// getters e setters
 
@@ -64,10 +75,10 @@ public class AtoIndisciplinar {
 	}
 
 	public Servidor getAssociado() {
-		return associado;
+		return servidor;
 	}
 
 	public void setAssociado(Servidor associado) {
-		this.associado = associado;
+		this.servidor = associado;
 	}
 }
