@@ -1,17 +1,19 @@
 package tcc.internato.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import com.mysql.cj.api.x.Collection;
 
 //
 //
@@ -24,61 +26,102 @@ import com.mysql.cj.api.x.Collection;
 //
 // 
 
-@Entity
-@Table(name = "ato_indisciplinar")
+//@Entity
+//@Table(name = "ato_indisciplinar")
 public class AtoIndisciplinar {
-	@Column (name = "id_ato")
-	@Id 
+	@Column(name = "id_ato")
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int id;
+	private Long id;
 
 	@Column(name = "descricao_ato", nullable = false)
-	public String descricao;
+	private String descricao;
 
 	@Column(name = "data_ato", nullable = false)
-	public Date data;
+	private Date data;
 
-	@Column(nullable = false)
-	// TODO relacionamento
-	public Servidor servidor;
-	
+	@ManyToOne
+	@JoinColumn(name = "servidor_id")
+	private Servidor servidor;
+
+	@ManyToOne
+	@JoinColumn(name = "interno_id")
+	private Interno interno;
+
 	@OneToMany
-    @JoinTable(name="interno_ato", 
-            joinColumns= @JoinColumn(name="id_interno"),
-            inverseJoinColumns= @JoinColumn(name="id_ato"))
-    private Collection <AtoIndisciplinar> atoindisciplinares;
+	private Vistoria vistoria;
 
-	// getters e setters
+	@OneToMany
+	private Chamada chamada;
 
-	public int getId() {
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "regulamento_ato", joinColumns = @JoinColumn(name = "id_regulamento") , inverseJoinColumns = @JoinColumn(name = "id_ato") )
+	private Set<Regulamento> regulamentos = new HashSet<Regulamento>();
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getDescricao_ato() {
+	public String getDescricao() {
 		return descricao;
 	}
 
-	public void setDescricao_ato(String descricao_ato) {
-		this.descricao = descricao_ato;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
-	public Date getData_ato() {
+	public Date getData() {
 		return data;
 	}
 
-	public void setData_ato(Date data_ato) {
-		this.data = data_ato;
+	public void setData(Date data) {
+		this.data = data;
 	}
 
-	public Servidor getAssociado() {
+	public Servidor getServidor() {
 		return servidor;
 	}
 
-	public void setAssociado(Servidor associado) {
-		this.servidor = associado;
+	public void setServidor(Servidor servidor) {
+		this.servidor = servidor;
 	}
+
+	public Interno getInterno() {
+		return interno;
+	}
+
+	public void setInterno(Interno interno) {
+		this.interno = interno;
+	}
+
+	public Vistoria getVistoria() {
+		return vistoria;
+	}
+
+	public void setVistoria(Vistoria vistoria) {
+		this.vistoria = vistoria;
+	}
+
+	public Chamada getChamada() {
+		return chamada;
+	}
+
+	public void setChamada(Chamada chamada) {
+		this.chamada = chamada;
+	}
+
+	public Set<Regulamento> getRegulamentos() {
+		return regulamentos;
+	}
+
+	public void setRegulamentos(Set<Regulamento> regulamentos) {
+		this.regulamentos = regulamentos;
+	}
+
+	// getters e setters
+
 }

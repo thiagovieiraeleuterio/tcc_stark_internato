@@ -1,11 +1,14 @@
 package tcc.internato.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.OneToMany;
 
 //
 //
@@ -18,15 +21,24 @@ import javax.persistence.Id;
 //
 //
 
-@Entity
+//@Entity
 public class Quarto {
-	@Column (name = "id_quarto")
+	@Column(name = "id_quarto")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long id;
+	private Long id;
 
-	//getter e setter
-	
+	@Column
+	private Chamada chamada;
+
+	@OneToMany(cascade = CascadeType.ALL, targetEntity = Interno.class, fetch = FetchType.LAZY, mappedBy = "quarto")
+	private List<Interno> internos;
+
+	@Column
+	private Vistoria vistoria;
+
+	// getter e setter
+
 	public Long getId_quarto() {
 		return id;
 	}
@@ -34,5 +46,5 @@ public class Quarto {
 	public void setId_quarto(Long id_quarto) {
 		this.id = id_quarto;
 	}
-	
+
 }

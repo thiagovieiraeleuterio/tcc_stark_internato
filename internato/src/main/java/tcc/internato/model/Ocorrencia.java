@@ -3,10 +3,8 @@ package tcc.internato.model;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
 
 //
 //
@@ -19,17 +17,15 @@ import javax.persistence.Id;
 //
 //
 
-
-
-@Entity
+//@Entity
 public class Ocorrencia {
 	@Id
 	@GeneratedValue
 	public Long id_ocorrencia;
-	
+
 	@Column(nullable = false)
 	public Date data_ocorrencia;
-	
+
 	@Column(nullable = false)
 	public String descricao_ocorrencia;
 }

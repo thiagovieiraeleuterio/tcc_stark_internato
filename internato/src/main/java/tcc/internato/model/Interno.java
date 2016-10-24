@@ -1,12 +1,17 @@
 package tcc.internato.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 //
 //
@@ -19,49 +24,65 @@ import javax.persistence.Id;
 //
 //
 
-
-
-@Entity
+//@MappedSuperclass
+//@Entity
 public class Interno extends Pessoa {
 	@Column(name = "id_interno")
-	@Id 
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column (nullable = false)
-	public String curso;
-	
-	@Column (name = "idade_interno", nullable = false)
-	public int idade;
-	
-	@Column (name = "dt_nasc_interno")
-	public Date dt_nasc;
-	//TODO DATA TIPO CALENDAR?
-	
+
+	@Column(nullable = false)
+	private String curso;
+
+	@Column(name = "idade_interno", nullable = false)
+	private int idade;
+
+	@Column(name = "dt_nasc_interno")
+	private Date dt_nasc;
+	// TODO DATA TIPO CALENDAR?
+
 	@Column
-	public int conta_banco;
-	
+	private int conta_banco;
+
 	@Column
-	public int agencia_banco;
-	
+	private int agencia_banco;
+
 	@Column
-	public Object foto_interno;
-	
+	private Object foto_interno;
+
 	@Column
-	public String dia_limpeza;
-	
-	@Column (nullable = false)
-	public String motivo;
-	
-	
-	// getters e setters
-	
-	public Long getId_interno() {
+	private String dia_limpeza;
+
+	@Column(nullable = false)
+	private String motivo;
+
+	@Column
+	public String problema_saude;
+
+	@Column
+	public boolean ativo;
+
+	@Column
+	public Date data_saida;
+
+	@Column
+	public Date data_desistencia;
+
+	@OneToMany(cascade = {
+			CascadeType.REFRESH }, targetEntity = AtoIndisciplinar.class, fetch = FetchType.LAZY, mappedBy = "interno")
+	private List<AtoIndisciplinar> atosIndisciplinares;
+
+	@ManyToOne
+	@JoinColumn(name = "id_quarto")
+	private Quarto quarto;
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId_interno(Long id_interno) {
-		this.id = id_interno;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getCurso() {
@@ -72,12 +93,20 @@ public class Interno extends Pessoa {
 		this.curso = curso;
 	}
 
-	public int getIdade_interno() {
+	public int getIdade() {
 		return idade;
 	}
 
-	public void setIdade_interno(int idade_interno) {
-		this.idade = idade_interno;
+	public void setIdade(int idade) {
+		this.idade = idade;
+	}
+
+	public Date getDt_nasc() {
+		return dt_nasc;
+	}
+
+	public void setDt_nasc(Date dt_nasc) {
+		this.dt_nasc = dt_nasc;
 	}
 
 	public int getConta_banco() {
@@ -152,15 +181,20 @@ public class Interno extends Pessoa {
 		this.data_desistencia = data_desistencia;
 	}
 
-	@Column
-	public String problema_saude;
-	
-	@Column
-	public boolean ativo;
-	
-	@Column
-	public Date data_saida;
-	
-	@Column
-	public Date data_desistencia;
+	public List<AtoIndisciplinar> getAtosIndisciplinares() {
+		return atosIndisciplinares;
+	}
+
+	public void setAtosIndisciplinares(List<AtoIndisciplinar> atosIndisciplinares) {
+		this.atosIndisciplinares = atosIndisciplinares;
+	}
+
+	public Quarto getQuarto() {
+		return quarto;
+	}
+
+	public void setQuarto(Quarto quarto) {
+		this.quarto = quarto;
+	}
+
 }

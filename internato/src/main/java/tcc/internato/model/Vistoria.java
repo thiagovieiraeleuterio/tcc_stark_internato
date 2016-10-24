@@ -3,11 +3,9 @@ package tcc.internato.model;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 
 //
 //
@@ -19,16 +17,16 @@ import javax.persistence.Id;
 //  @ Author : 
 //
 //
-@Entity
+//@Entity
 public class Vistoria {
-	@Column (name = "id_vistoria")
+	@Column(name = "id_vistoria")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "data_vistoria", nullable = false)
 	public Date data;
-	
+
 	@Column(name = "nota_limpeza", nullable = false)
 	public int nota;
 
@@ -55,5 +53,5 @@ public class Vistoria {
 	public void setNota(int nota) {
 		this.nota = nota;
 	}
-	
+
 }

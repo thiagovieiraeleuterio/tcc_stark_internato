@@ -1,7 +1,6 @@
 package tcc.internato.model;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,38 +16,36 @@ import javax.persistence.Id;
 //
 //
 
-
-
-@Entity
+//@Entity
 public class Pais {
-	@Column (name = "id_pais")
+	@Column(name = "id_pais")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column 
+
+	@Column
 	public String nome_pai;
-	
+
 	@Column
 	public String profissao_pai;
-	
+
 	@Column
 	public String nome_mae;
-	
+
 	@Column
 	public String profissao_mae;
-	
+
 	@Column
 	public int telefone_pai;
-	
+
 	@Column
 	public int telefone_mae;
-	
+
 	@Column
 	public String email_reponsavel;
 
-	//getters e setters 
-	
+	// getters e setters
+
 	public Long getId_pais() {
 		return id;
 	}
@@ -112,5 +109,5 @@ public class Pais {
 	public void setEmail_reponsavel(String email_reponsavel) {
 		this.email_reponsavel = email_reponsavel;
 	}
-	
+
 }

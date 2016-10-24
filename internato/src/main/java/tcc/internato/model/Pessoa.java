@@ -1,13 +1,9 @@
 package tcc.internato.model;
 
-
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-
 
 //
 //
@@ -20,26 +16,24 @@ import javax.persistence.Id;
 //
 //
 
-
-
-@Entity
+//@Entity
 public class Pessoa {
-	@Column (name = "id_pessoa")
+	@Column(name = "id_pessoa")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column (name = "nome_pessoa", nullable = false)
+
+	@Column(name = "nome_pessoa", nullable = false)
 	private String nome;
-	
-	@Column (name = "cpf_pessoa", nullable = false)
+
+	@Column(name = "cpf_pessoa", nullable = false)
 	private int cpf;
-	
-	@Column (name = "matricula_pessoa", nullable = false)
+
+	@Column(name = "matricula_pessoa", nullable = false)
 	public String matricula;
-	
+
 	// getters e setters
-	
+
 	public Long getId_pessoa() {
 		return id;
 	}
@@ -90,9 +84,8 @@ public class Pessoa {
 
 	@Column
 	public String telefone_pessoa;
-	
+
 	@Column
 	public String email_pessoa;
-	
-	
+
 }

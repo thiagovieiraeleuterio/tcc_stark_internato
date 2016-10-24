@@ -1,8 +1,6 @@
 package tcc.internato.model;
 
-
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,42 +15,39 @@ import javax.persistence.Id;
 //
 //
 
-
-
-@Entity
+//@Entity
 public class Endereco {
-	@Column (name = "id_endereco")
+	@Column(name = "id_endereco")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "cidade_interno", nullable = false)
 	public String cidade;
-	
+
 	@Column(name = "estado_interno", nullable = false)
 	public String estado;
-	
+
 	@Column(name = "cep_interno", nullable = false)
 	public int cep;
-	
+
 	@Column(name = "endereco_interno", nullable = false)
 	public String endereco;
-	
+
 	@Column(name = "avenida_interno", nullable = false)
 	public String avenida;
-	
+
 	@Column(name = "apt_interno")
 	public String apt;
-	
+
 	@Column(name = "numero_casa_interno")
 	public int numero;
-	
+
 	@Column(nullable = false)
 	public String reside_com;
 
 	// getters e setters
-	
-	
+
 	public Long getId_endereco() {
 		return id;
 	}
@@ -124,5 +119,5 @@ public class Endereco {
 	public void setReside_com(String reside_com) {
 		this.reside_com = reside_com;
 	}
-	
+
 }

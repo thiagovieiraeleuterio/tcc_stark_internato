@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 //
 //
@@ -17,21 +18,22 @@ import javax.persistence.Id;
 //
 //
 @Entity
+@Table(name = "regulamento")
 public class Regulamento {
-	@Column (name = "id_regulamento")
+
 	@Id
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(name = "apelido_regulamento", nullable = false)
-	public String apelido;
-	
-	@Column(name = "descricao_regulamento", nullable = false)
-	public String descricao;
 
-	//getters e setters
-	
-	
+	@Column(name = "apelido", nullable = false)
+	private String apelido;
+
+	@Column(name = "descricao", nullable = false)
+	private String descricao;
+
+	// getters e setters
+
 	public Long getId_regulamento() {
 		return id;
 	}
@@ -55,5 +57,5 @@ public class Regulamento {
 	public void setDescricao_regulamento(String descricao_regulamento) {
 		this.descricao = descricao_regulamento;
 	}
-	
+
 }
