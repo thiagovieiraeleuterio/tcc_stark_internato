@@ -1,11 +1,21 @@
 package tcc.internato.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+<<<<<<< HEAD
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+=======
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 
 //
 //
@@ -34,6 +44,15 @@ public class Chamada {
 
 	@Column(nullable = true)
 	public String justificativa;
+
+	
+	// RELACIONAMENTOS
+	
+	// uma Chamada esta associada a muitos Quartos.
+	@OneToMany(cascade = {
+			CascadeType.REFRESH }, targetEntity = Quarto.class, fetch = FetchType.LAZY, mappedBy = "chamada")
+	private List<Quarto> quarto;
+
 
 	// getters e setters
 

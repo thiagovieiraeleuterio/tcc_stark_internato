@@ -6,6 +6,9 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+
+import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +17,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import javax.persistence.PrimaryKeyJoinColumn;
 
 //
 //
@@ -40,6 +45,20 @@ public class AtoIndisciplinar {
 	@Column(name = "data_ato", nullable = false)
 	private Date data;
 
+	// RELACIONAMENTOS
+
+	// muitos atos indisciplinares estam associados a um servidor
+	@ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
+	@PrimaryKeyJoinColumn
+	@JoinColumn(name = "servidor_fk")
+	private Servidor servidor;
+
+	// muitos atos indisciplinares estam associados a um interno,
+	// e um interno esta associado a 0 ou muitos atos insdiciplinares
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "interno_ato", joinColumns = @JoinColumn(name = "fk_interno"), inverseJoinColumns = @JoinColumn(name = "id_ato"))
+	private Set<Interno> interno;
+
 	@ManyToOne
 	@JoinColumn(name = "servidor_id")
 	private Servidor servidor;
@@ -54,8 +73,14 @@ public class AtoIndisciplinar {
 	@OneToMany
 	private Chamada chamada;
 
+	// um regulamento esta associados a 0 ou muitos atos indisciplinares
+	// e muitos atos indisciplinares contén 1 ou mais regulamentos
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "regulamento_ato", joinColumns = @JoinColumn(name = "id_regulamento") , inverseJoinColumns = @JoinColumn(name = "id_ato") )
+	@JoinTable(name = "regulamento_ato", joinColumns = @JoinColumn(name = "fk_regulamento"), inverseJoinColumns = @JoinColumn(name = "id_ato"))
+	private Set<Regulamento> regulamentos;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "regulamento_ato", joinColumns = @JoinColumn(name = "id_regulamento"), inverseJoinColumns = @JoinColumn(name = "id_ato"))
 	private Set<Regulamento> regulamentos = new HashSet<Regulamento>();
 
 	public Long getId() {
@@ -88,6 +113,7 @@ public class AtoIndisciplinar {
 
 	public void setServidor(Servidor servidor) {
 		this.servidor = servidor;
+
 	}
 
 	public Interno getInterno() {
@@ -122,6 +148,38 @@ public class AtoIndisciplinar {
 		this.regulamentos = regulamentos;
 	}
 
-	// getters e setters
+	}
+
+	public Interno getInterno() {
+		return interno;
+	}
+
+	public void setInterno(Interno interno) {
+		this.interno = interno;
+	}
+
+	public Vistoria getVistoria() {
+		return vistoria;
+	}
+
+	public void setVistoria(Vistoria vistoria) {
+		this.vistoria = vistoria;
+	}
+
+	public Chamada getChamada() {
+		return chamada;
+	}
+
+	public void setChamada(Chamada chamada) {
+		this.chamada = chamada;
+	}
+
+	public Set<Regulamento> getRegulamentos() {
+		return regulamentos;
+	}
+
+	public void setRegulamentos(Set<Regulamento> regulamentos) {
+		this.regulamentos = regulamentos;
+	}
 
 }

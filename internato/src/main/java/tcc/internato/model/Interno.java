@@ -12,6 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+<<<<<<< HEAD
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+
+import com.fabricio.exemplos.exemplos_jpa.core.model.controle.Produto;
 
 //
 //
@@ -45,6 +50,21 @@ public class Interno extends Pessoa {
 	@Column
 	private int conta_banco;
 
+
+	@Column
+	private int agencia_banco;
+
+	@Column
+	private Object foto_interno;
+
+	@Column
+	private String dia_limpeza;
+
+	@Column(nullable = false)
+	private String motivo;
+
+	@Column
+
 	@Column
 	private int agencia_banco;
 
@@ -69,11 +89,26 @@ public class Interno extends Pessoa {
 	@Column
 	public Date data_desistencia;
 
+
+	// RELACIONAMENTOS
+	
+
 	@OneToMany(cascade = {
 			CascadeType.REFRESH }, targetEntity = AtoIndisciplinar.class, fetch = FetchType.LAZY, mappedBy = "interno")
 	private List<AtoIndisciplinar> atosIndisciplinares;
 
 	@ManyToOne
+
+	@JoinColumn(name = "fk_quarto")
+	private Quarto quarto;
+	
+	@OneToOne(optional = false, fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
+	@JoinColumn(name = "pais_fk", nullable = false, unique = true)
+	private Pais pais;
+	
+	@OneToOne(optional = false, fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
+	@JoinColumn(name = "endereco_fk", nullable = false, unique = true)
+	private Endereco endereco;
 	@JoinColumn(name = "id_quarto")
 	private Quarto quarto;
 

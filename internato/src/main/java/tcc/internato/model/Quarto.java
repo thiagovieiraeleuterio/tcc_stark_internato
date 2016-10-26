@@ -31,6 +31,16 @@ public class Quarto {
 	@Column
 	private Chamada chamada;
 
+	// RELACIONAMENTOS
+
+	@OneToMany(cascade = CascadeType.REFRESH, targetEntity = Interno.class, fetch = FetchType.LAZY, mappedBy = "quarto")
+	private List<Interno> internos;
+
+	@OneToMany(cascade = CascadeType.REFRESH, targetEntity = Interno.class, fetch = FetchType.LAZY, mappedBy = "quarto")
+	private List<Vistoria> vistorias;
+
+	// getter e setter
+
 	@OneToMany(cascade = CascadeType.ALL, targetEntity = Interno.class, fetch = FetchType.LAZY, mappedBy = "quarto")
 	private List<Interno> internos;
 

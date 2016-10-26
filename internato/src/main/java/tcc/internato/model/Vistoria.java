@@ -1,11 +1,18 @@
 package tcc.internato.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 //
 //
@@ -29,6 +36,16 @@ public class Vistoria {
 
 	@Column(name = "nota_limpeza", nullable = false)
 	public int nota;
+
+	// RELACIONAMENTOS
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
+	@PrimaryKeyJoinColumn
+	@JoinColumn(name = "quarto_fk")
+	private Quarto quarto;
+
+	@OneToMany(cascade = CascadeType.REFRESH, targetEntity = Interno.class, fetch = FetchType.LAZY, mappedBy = "vistoria")
+	private List<AtoIndisciplinar> atosIndisciplinares;
 
 	public Long getId() {
 		return id;

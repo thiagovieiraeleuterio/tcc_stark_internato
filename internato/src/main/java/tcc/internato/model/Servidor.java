@@ -28,6 +28,8 @@ public class Servidor extends Pessoa {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	// RELACIONAMENTOS
+
 	@OneToMany(cascade = CascadeType.ALL, targetEntity = AtoIndisciplinar.class, fetch = FetchType.LAZY, mappedBy = "servidor")
 	private List<AtoIndisciplinar> atoindisciplinares;
 
