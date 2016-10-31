@@ -5,17 +5,19 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-<<<<<<< HEAD
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-=======
-import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+import tcc.internato.enumeration.TipoPresenca;
 
 //
 //
@@ -28,63 +30,41 @@ import javax.persistence.Id;
 //
 //
 
-//@Entity
-//@Table(name="chamada")
-public class Chamada {
+@Entity
+@Table(name = "chamada")
+public class Chamada extends EntidadeBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_chamada")
-	public int id;
+	public Long id;
 
-	@Column(name = "data_chamada", nullable = false)
+	@Column(name = "data", nullable = false)
 	public Date data;
 
 	@Column(nullable = false)
-	public boolean falta;
+	@Enumerated(EnumType.ORDINAL)
+	public TipoPresenca presenca;
 
 	@Column(nullable = true)
 	public String justificativa;
 
-	
-	// RELACIONAMENTOS
-	
-	// uma Chamada esta associada a muitos Quartos.
+	// RELACIONAMENTOS ...
+
+	// Uma Chamada esta associada a um Quartos.
 	@OneToMany(cascade = {
 			CascadeType.REFRESH }, targetEntity = Quarto.class, fetch = FetchType.LAZY, mappedBy = "chamada")
 	private List<Quarto> quarto;
 
+	// Uma Chamada esta associada a muitos atos indisciplinares.
+	@OneToMany(cascade = {
+			CascadeType.REFRESH }, targetEntity = Chamada.class, fetch = FetchType.LAZY, mappedBy = "chamada")
+	private List<AtoIndisciplinar> atoindisciplinar;
 
-	// getters e setters
+	// Uma Chamada esta associada a muitos Internos.
+	@OneToMany(cascade = {
+			CascadeType.REFRESH }, targetEntity = Interno.class, fetch = FetchType.LAZY, mappedBy = "chamada")
+	private List<Interno> interno;
 
-	public int getId() {
-		return id;
-	}
+	// GETTERS E SETTERS ...
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public Date getData_chamada() {
-		return data;
-	}
-
-	public void setData_chamada(Date data_chamada) {
-		this.data = data_chamada;
-	}
-
-	public boolean isFalta() {
-		return falta;
-	}
-
-	public void setFalta(boolean falta) {
-		this.falta = falta;
-	}
-
-	public String getJustificativa() {
-		return justificativa;
-	}
-
-	public void setJustificativa(String justificativa) {
-		this.justificativa = justificativa;
-	}
 }

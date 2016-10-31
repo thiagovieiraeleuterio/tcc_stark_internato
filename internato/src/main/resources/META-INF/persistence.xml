@@ -7,13 +7,23 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 		<!-- provedor/implementacao do JPA -->
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<!-- entidade mapeada -->
+		<!-- <class>tcc.internato.model.AtoIndisciplinar</class> -->
+		<class>tcc.internato.model.Chamada</class>
+		<class>tcc.internato.model.Endereco</class>
+		<class>tcc.internato.model.Interno</class>
+		<class>tcc.internato.model.Pais</class>
+		<class>tcc.internato.model.Pessoa</class>
+		<class>tcc.internato.model.Quarto</class>
 		<class>tcc.internato.model.Regulamento</class>
+		<class>tcc.internato.model.Servidor</class>
+		<class>tcc.internato.model.Vistoria</class> 
 		<properties>
 			<!-- dados da conexao -->
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/stark_bd" />
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password" value="root" />
+			<property name="hibernate.connection.autocommit" value="false" />
 			<!-- propriedades do hibernate -->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.show_sql" value="true" />
@@ -23,3 +33,4 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 		</properties>
 	</persistence-unit>
 </persistence>
+

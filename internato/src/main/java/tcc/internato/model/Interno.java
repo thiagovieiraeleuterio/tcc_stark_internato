@@ -1,22 +1,13 @@
 package tcc.internato.model;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-<<<<<<< HEAD
-import javax.persistence.OneToOne;
+import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
-
-import com.fabricio.exemplos.exemplos_jpa.core.model.controle.Produto;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 //
 //
@@ -29,207 +20,219 @@ import com.fabricio.exemplos.exemplos_jpa.core.model.controle.Produto;
 //
 //
 
-//@MappedSuperclass
-//@Entity
+@Entity
+@Table(name = "interno")
+@PrimaryKeyJoinColumn(name = "id_interno")
 public class Interno extends Pessoa {
-	@Column(name = "id_interno")
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 
 	@Column(nullable = false)
 	private String curso;
 
-	@Column(name = "idade_interno", nullable = false)
-	private int idade;
+	@Column(nullable = false)
+	private Integer idade;
 
-	@Column(name = "dt_nasc_interno")
-	private Date dt_nasc;
-	// TODO DATA TIPO CALENDAR?
+	@Column(name = "dt_nasc")
+	private Date dtNasc;
 
-	@Column
-	private int conta_banco;
-
-
-	@Column
-	private int agencia_banco;
+	// TODO definir tamanho de Strings
+	@Column(length = 10)
+	private String contaBanco;
 
 	@Column
-	private Object foto_interno;
+	private String agenciaBanco;
 
 	@Column
-	private String dia_limpeza;
+	private Integer diaLimpeza;
 
 	@Column(nullable = false)
 	private String motivo;
 
 	@Column
+	public String problemaSaude;
 
 	@Column
-	private int agencia_banco;
+	public Boolean desistencia;
 
 	@Column
-	private Object foto_interno;
+	@Temporal(TemporalType.DATE)
+	public Date dataSaida;
 
-	@Column
-	private String dia_limpeza;
-
-	@Column(nullable = false)
-	private String motivo;
-
-	@Column
-	public String problema_saude;
-
-	@Column
-	public boolean ativo;
-
-	@Column
-	public Date data_saida;
-
-	@Column
-	public Date data_desistencia;
-
-
-	// RELACIONAMENTOS
-	
-
-	@OneToMany(cascade = {
-			CascadeType.REFRESH }, targetEntity = AtoIndisciplinar.class, fetch = FetchType.LAZY, mappedBy = "interno")
-	private List<AtoIndisciplinar> atosIndisciplinares;
-
-	@ManyToOne
-
-	@JoinColumn(name = "fk_quarto")
-	private Quarto quarto;
-	
-	@OneToOne(optional = false, fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "pais_fk", nullable = false, unique = true)
-	private Pais pais;
-	
-	@OneToOne(optional = false, fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "endereco_fk", nullable = false, unique = true)
-	private Endereco endereco;
-	@JoinColumn(name = "id_quarto")
-	private Quarto quarto;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getCurso() {
-		return curso;
-	}
-
-	public void setCurso(String curso) {
-		this.curso = curso;
-	}
-
-	public int getIdade() {
-		return idade;
-	}
-
-	public void setIdade(int idade) {
-		this.idade = idade;
-	}
-
-	public Date getDt_nasc() {
-		return dt_nasc;
-	}
-
-	public void setDt_nasc(Date dt_nasc) {
-		this.dt_nasc = dt_nasc;
-	}
-
-	public int getConta_banco() {
-		return conta_banco;
-	}
-
-	public void setConta_banco(int conta_banco) {
-		this.conta_banco = conta_banco;
-	}
-
-	public int getAgencia_banco() {
-		return agencia_banco;
-	}
-
-	public void setAgencia_banco(int agencia_banco) {
-		this.agencia_banco = agencia_banco;
-	}
-
-	public Object getFoto_interno() {
-		return foto_interno;
-	}
-
-	public void setFoto_interno(Object foto_interno) {
-		this.foto_interno = foto_interno;
-	}
-
-	public String getDia_limpeza() {
-		return dia_limpeza;
-	}
-
-	public void setDia_limpeza(String dia_limpeza) {
-		this.dia_limpeza = dia_limpeza;
-	}
-
-	public String getMotivo() {
-		return motivo;
-	}
-
-	public void setMotivo(String motivo) {
-		this.motivo = motivo;
-	}
-
-	public String getProblema_saude() {
-		return problema_saude;
-	}
-
-	public void setProblema_saude(String problema_saude) {
-		this.problema_saude = problema_saude;
-	}
-
-	public boolean isAtivo() {
-		return ativo;
-	}
-
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
-	}
-
-	public Date getData_saida() {
-		return data_saida;
-	}
-
-	public void setData_saida(Date data_saida) {
-		this.data_saida = data_saida;
-	}
-
-	public Date getData_desistencia() {
-		return data_desistencia;
-	}
-
-	public void setData_desistencia(Date data_desistencia) {
-		this.data_desistencia = data_desistencia;
-	}
-
-	public List<AtoIndisciplinar> getAtosIndisciplinares() {
-		return atosIndisciplinares;
-	}
-
-	public void setAtosIndisciplinares(List<AtoIndisciplinar> atosIndisciplinares) {
-		this.atosIndisciplinares = atosIndisciplinares;
-	}
-
-	public Quarto getQuarto() {
-		return quarto;
-	}
-
-	public void setQuarto(Quarto quarto) {
-		this.quarto = quarto;
-	}
-
+	// // RELACIONAMENTOS
+	//
+	// // Um interno possui um ou muitos atos indisciplinares.
+	// @OneToMany(cascade = {
+	// CascadeType.REFRESH }, targetEntity = AtoIndisciplinar.class, fetch =
+	// FetchType.LAZY, mappedBy = "interno")
+	// private List<AtoIndisciplinar> atosIndisciplinares;
+	//
+	// // Um interno possui um pais.
+	// @OneToOne(optional = false, fetch = FetchType.EAGER, cascade = {
+	// CascadeType.REFRESH })
+	// @JoinColumn(name = "pais_fk", nullable = false, unique = true)
+	// private Pais pais;
+	//
+	// // Um interno possui um endereço.
+	// @OneToOne(optional = false, fetch = FetchType.EAGER, cascade = {
+	// CascadeType.REFRESH })
+	// @JoinColumn(name = "endereco_fk", nullable = false, unique = true)
+	// private Endereco endereco;
+	//
+	// // Um interno está associado a um quarto.
+	// @OneToOne(optional = false, fetch = FetchType.EAGER, cascade = {
+	// CascadeType.REFRESH })
+	// @JoinColumn(name = "quarto_fk", nullable = false, unique = true)
+	// private Quarto quarto;
+	//
+	// // Um interno esta em uma chamada.
+	// @OneToOne(optional = false, fetch = FetchType.EAGER, cascade = {
+	// CascadeType.REFRESH })
+	// @JoinColumn(name = "chamada_fk", nullable = false, unique = true)
+	// private Chamada chamada;
+	//
+	// public Long getId() {
+	// return id;
+	// }
+	//
+	// public void setId(Long id) {
+	// this.id = id;
+	// }
+	//
+	// public String getCurso() {
+	// return curso;
+	// }
+	//
+	// public void setCurso(String curso) {
+	// this.curso = curso;
+	// }
+	//
+	// public int getIdade() {
+	// return idade;
+	// }
+	//
+	// public void setIdade(int idade) {
+	// this.idade = idade;
+	// }
+	//
+	// public Date getDtNasc() {
+	// return dtNasc;
+	// }
+	//
+	// public void setDtNasc(Date dtNasc) {
+	// this.dtNasc = dtNasc;
+	// }
+	//
+	// public int getConta_banco() {
+	// return conta_banco;
+	// }
+	//
+	// public void setConta_banco(int conta_banco) {
+	// this.conta_banco = conta_banco;
+	// }
+	//
+	// public int getAgencia_banco() {
+	// return agencia_banco;
+	// }
+	//
+	// public void setAgencia_banco(int agencia_banco) {
+	// this.agencia_banco = agencia_banco;
+	// }
+	//
+	// public Object getFoto_interno() {
+	// return foto_interno;
+	// }
+	//
+	// public void setFoto_interno(Object foto_interno) {
+	// this.foto_interno = foto_interno;
+	// }
+	//
+	// public String getDia_limpeza() {
+	// return dia_limpeza;
+	// }
+	//
+	// public void setDia_limpeza(String dia_limpeza) {
+	// this.dia_limpeza = dia_limpeza;
+	// }
+	//
+	// public String getMotivo() {
+	// return motivo;
+	// }
+	//
+	// public void setMotivo(String motivo) {
+	// this.motivo = motivo;
+	// }
+	//
+	// public String getProblema_saude() {
+	// return problema_saude;
+	// }
+	//
+	// public void setProblema_saude(String problema_saude) {
+	// this.problema_saude = problema_saude;
+	// }
+	//
+	// public boolean isAtivo() {
+	// return ativo;
+	// }
+	//
+	// public void setAtivo(boolean ativo) {
+	// this.ativo = ativo;
+	// }
+	//
+	// public Date getData_saida() {
+	// return data_saida;
+	// }
+	//
+	// public void setData_saida(Date data_saida) {
+	// this.data_saida = data_saida;
+	// }
+	//
+	// public Date getData_desistencia() {
+	// return data_desistencia;
+	// }
+	//
+	// public void setData_desistencia(Date data_desistencia) {
+	// this.data_desistencia = data_desistencia;
+	// }
+	//
+	// public List<AtoIndisciplinar> getAtosIndisciplinares() {
+	// return atosIndisciplinares;
+	// }
+	//
+	// public void setAtosIndisciplinares(List<AtoIndisciplinar>
+	// atosIndisciplinares) {
+	// this.atosIndisciplinares = atosIndisciplinares;
+	// }
+	//
+	// public Pais getPais() {
+	// return pais;
+	// }
+	//
+	// public void setPais(Pais pais) {
+	// this.pais = pais;
+	// }
+	//
+	// public Endereco getEndereco() {
+	// return endereco;
+	// }
+	//
+	// public void setEndereco(Endereco endereco) {
+	// this.endereco = endereco;
+	// }
+	//
+	// public Quarto getQuarto() {
+	// return quarto;
+	// }
+	//
+	// public void setQuarto(Quarto quarto) {
+	// this.quarto = quarto;
+	// }
+	//
+	// public Chamada getChamada() {
+	// return chamada;
+	// }
+	//
+	// public void setChamada(Chamada chamada) {
+	// this.chamada = chamada;
+	// }
+	//
+	// // GETTERS E SETTERS
 }

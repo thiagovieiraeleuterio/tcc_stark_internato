@@ -1,9 +1,11 @@
 package tcc.internato.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 //
 //
@@ -16,98 +18,99 @@ import javax.persistence.Id;
 //
 //
 
-//@Entity
-public class Pais {
-	@Column(name = "id_pais")
+@Entity
+@Table(name = "pais")
+public class Pais extends EntidadeBase {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column
-	public String nome_pai;
+	@Column(name = "nome_pai")
+	public String nomePai;
 
-	@Column
-	public String profissao_pai;
+	@Column(name = "profissao_pai")
+	public String profissaoPai;
 
-	@Column
-	public String nome_mae;
+	@Column(name = "nome_mae")
+	public String nomeMae;
 
-	@Column
-	public String profissao_mae;
+	@Column(name = "profissao_mae")
+	public String profissaoMae;
 
-	@Column
-	public int telefone_pai;
+	@Column(name = "telefone_pai")
+	public int telefonePai;
 
-	@Column
-	public int telefone_mae;
+	@Column(name = "telefone_mae")
+	public int telefoneMae;
 
-	@Column
-	public String email_reponsavel;
+	@Column(name = "email_responsavel")
+	public String emailReponsavel;
 
-	// getters e setters
-
-	public Long getId_pais() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId_pais(Long id_pais) {
-		this.id = id_pais;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getNome_pai() {
-		return nome_pai;
+	public String getNomePai() {
+		return nomePai;
 	}
 
-	public void setNome_pai(String nome_pai) {
-		this.nome_pai = nome_pai;
+	public void setNomePai(String nomePai) {
+		this.nomePai = nomePai;
 	}
 
-	public String getProfissao_pai() {
-		return profissao_pai;
+	public String getProfissaoPai() {
+		return profissaoPai;
 	}
 
-	public void setProfissao_pai(String profissao_pai) {
-		this.profissao_pai = profissao_pai;
+	public void setProfissaoPai(String profissaoPai) {
+		this.profissaoPai = profissaoPai;
 	}
 
-	public String getNome_mae() {
-		return nome_mae;
+	public String getNomeMae() {
+		return nomeMae;
 	}
 
-	public void setNome_mae(String nome_mae) {
-		this.nome_mae = nome_mae;
+	public void setNomeMae(String nomeMae) {
+		this.nomeMae = nomeMae;
 	}
 
-	public String getProfissao_mae() {
-		return profissao_mae;
+	public String getProfissaoMae() {
+		return profissaoMae;
 	}
 
-	public void setProfissao_mae(String profissao_mae) {
-		this.profissao_mae = profissao_mae;
+	public void setProfissaoMae(String profissaoMae) {
+		this.profissaoMae = profissaoMae;
 	}
 
-	public int getTelefone_pai() {
-		return telefone_pai;
+	public int getTelefonePai() {
+		return telefonePai;
 	}
 
-	public void setTelefone_pai(int telefone_pai) {
-		this.telefone_pai = telefone_pai;
+	public void setTelefonePai(int telefonePai) {
+		this.telefonePai = telefonePai;
 	}
 
-	public int getTelefone_mae() {
-		return telefone_mae;
+	public int getTelefoneMae() {
+		return telefoneMae;
 	}
 
-	public void setTelefone_mae(int telefone_mae) {
-		this.telefone_mae = telefone_mae;
+	public void setTelefoneMae(int telefoneMae) {
+		this.telefoneMae = telefoneMae;
 	}
 
-	public String getEmail_reponsavel() {
-		return email_reponsavel;
+	public String getEmailReponsavel() {
+		return emailReponsavel;
 	}
 
-	public void setEmail_reponsavel(String email_reponsavel) {
-		this.email_reponsavel = email_reponsavel;
+	public void setEmailReponsavel(String emailReponsavel) {
+		this.emailReponsavel = emailReponsavel;
 	}
+
+	// getters e setters
 
 }

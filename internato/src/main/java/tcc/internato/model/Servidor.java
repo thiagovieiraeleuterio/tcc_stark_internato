@@ -1,14 +1,8 @@
 package tcc.internato.model;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 //
 //
@@ -21,34 +15,43 @@ import javax.persistence.OneToMany;
 //
 //
 
-//@Entity
+@Entity
+@Table(name = "servidor")
+@PrimaryKeyJoinColumn(name = "id_servidor")
 public class Servidor extends Pessoa {
-	@Column(name = "id_servidor")
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 
-	// RELACIONAMENTOS
+	// RELACIONAMENTOS ...
 
-	@OneToMany(cascade = CascadeType.ALL, targetEntity = AtoIndisciplinar.class, fetch = FetchType.LAZY, mappedBy = "servidor")
-	private List<AtoIndisciplinar> atoindisciplinares;
+	// TODO
+	// // Um servidor esta associado a muitos atos indisciplinares.
+	// @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY,
+	// mappedBy = "servidor")
+	// @JoinColumn(name = "servidor_fk")
+	// private List<AtoIndisciplinar> atoindisciplinares;
+	//
+	// // um servidor está associada a 0 ou muitas vistorias.
+	// @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY,
+	// mappedBy = "servidor")
+	// @JoinColumn(name = "servidor_fk")
+	// private List<Vistoria> vistoria;
+	//
+	// public List<AtoIndisciplinar> getAtoindisciplinares() {
+	// return atoindisciplinares;
+	// }
+	//
+	// public void setAtoindisciplinares(List<AtoIndisciplinar>
+	// atoindisciplinares) {
+	// this.atoindisciplinares = atoindisciplinares;
+	// }
+	//
+	// public List<Vistoria> getVistoria() {
+	// return vistoria;
+	// }
+	//
+	// public void setVistoria(List<Vistoria> vistoria) {
+	// this.vistoria = vistoria;
+	// }
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public List<AtoIndisciplinar> getAtoindisciplinares() {
-		return atoindisciplinares;
-	}
-
-	public void setAtoindisciplinares(List<AtoIndisciplinar> atoindisciplinares) {
-		this.atoindisciplinares = atoindisciplinares;
-	}
-
-	// getter e setter
+	// GETTERS E SETTERS ...
 
 }
