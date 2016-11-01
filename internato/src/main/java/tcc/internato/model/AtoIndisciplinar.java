@@ -81,7 +81,7 @@ public class AtoIndisciplinar {
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "regulamento_ato", joinColumns = @JoinColumn(name = "id_regulamento"), inverseJoinColumns = @JoinColumn(name = "id_ato"))
-	private Set<Regulamento> regulamentos = new HashSet<Regulamento>();
+	private Set<Regulamento> regulamentos;
 
 	public Long getId() {
 		return id;
