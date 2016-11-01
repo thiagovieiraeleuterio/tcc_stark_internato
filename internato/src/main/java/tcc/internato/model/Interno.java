@@ -1,9 +1,15 @@
 package tcc.internato.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -59,180 +65,150 @@ public class Interno extends Pessoa {
 
 	// // RELACIONAMENTOS
 	//
-	// // Um interno possui um ou muitos atos indisciplinares.
-	// @OneToMany(cascade = {
-	// CascadeType.REFRESH }, targetEntity = AtoIndisciplinar.class, fetch =
-	// FetchType.LAZY, mappedBy = "interno")
-	// private List<AtoIndisciplinar> atosIndisciplinares;
+	// Um interno possui um ou muitos atos indisciplinares.
+	@OneToMany(cascade = {
+			CascadeType.REFRESH }, targetEntity = AtoIndisciplinar.class, fetch = FetchType.LAZY, mappedBy = "interno")
+	private List<AtoIndisciplinar> atosIndisciplinares;
+
+	// Um interno possui um pais.
+	@OneToOne(optional = false, fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
+	@JoinColumn(name = "pais_fk", nullable = false, unique = true)
+	private Pais pais;
+
+	// Um interno possui um endereço.
+	@OneToOne(optional = false, fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
+	@JoinColumn(name = "endereco_fk", nullable = false, unique = true)
+	private Endereco endereco;
+
+	// Um interno está associado a um quarto.
+	@OneToOne(optional = false, fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
+	@JoinColumn(name = "quarto_fk", nullable = false, unique = true)
+	private Quarto quarto;
 	//
-	// // Um interno possui um pais.
-	// @OneToOne(optional = false, fetch = FetchType.EAGER, cascade = {
-	// CascadeType.REFRESH })
-	// @JoinColumn(name = "pais_fk", nullable = false, unique = true)
-	// private Pais pais;
-	//
-	// // Um interno possui um endereço.
-	// @OneToOne(optional = false, fetch = FetchType.EAGER, cascade = {
-	// CascadeType.REFRESH })
-	// @JoinColumn(name = "endereco_fk", nullable = false, unique = true)
-	// private Endereco endereco;
-	//
-	// // Um interno está associado a um quarto.
-	// @OneToOne(optional = false, fetch = FetchType.EAGER, cascade = {
-	// CascadeType.REFRESH })
-	// @JoinColumn(name = "quarto_fk", nullable = false, unique = true)
-	// private Quarto quarto;
-	//
-	// // Um interno esta em uma chamada.
-	// @OneToOne(optional = false, fetch = FetchType.EAGER, cascade = {
-	// CascadeType.REFRESH })
-	// @JoinColumn(name = "chamada_fk", nullable = false, unique = true)
-	// private Chamada chamada;
-	//
-	// public Long getId() {
-	// return id;
-	// }
-	//
-	// public void setId(Long id) {
-	// this.id = id;
-	// }
-	//
-	// public String getCurso() {
-	// return curso;
-	// }
-	//
-	// public void setCurso(String curso) {
-	// this.curso = curso;
-	// }
-	//
-	// public int getIdade() {
-	// return idade;
-	// }
-	//
-	// public void setIdade(int idade) {
-	// this.idade = idade;
-	// }
-	//
-	// public Date getDtNasc() {
-	// return dtNasc;
-	// }
-	//
-	// public void setDtNasc(Date dtNasc) {
-	// this.dtNasc = dtNasc;
-	// }
-	//
-	// public int getConta_banco() {
-	// return conta_banco;
-	// }
-	//
-	// public void setConta_banco(int conta_banco) {
-	// this.conta_banco = conta_banco;
-	// }
-	//
-	// public int getAgencia_banco() {
-	// return agencia_banco;
-	// }
-	//
-	// public void setAgencia_banco(int agencia_banco) {
-	// this.agencia_banco = agencia_banco;
-	// }
-	//
-	// public Object getFoto_interno() {
-	// return foto_interno;
-	// }
-	//
-	// public void setFoto_interno(Object foto_interno) {
-	// this.foto_interno = foto_interno;
-	// }
-	//
-	// public String getDia_limpeza() {
-	// return dia_limpeza;
-	// }
-	//
-	// public void setDia_limpeza(String dia_limpeza) {
-	// this.dia_limpeza = dia_limpeza;
-	// }
-	//
-	// public String getMotivo() {
-	// return motivo;
-	// }
-	//
-	// public void setMotivo(String motivo) {
-	// this.motivo = motivo;
-	// }
-	//
-	// public String getProblema_saude() {
-	// return problema_saude;
-	// }
-	//
-	// public void setProblema_saude(String problema_saude) {
-	// this.problema_saude = problema_saude;
-	// }
-	//
-	// public boolean isAtivo() {
-	// return ativo;
-	// }
-	//
-	// public void setAtivo(boolean ativo) {
-	// this.ativo = ativo;
-	// }
-	//
-	// public Date getData_saida() {
-	// return data_saida;
-	// }
-	//
-	// public void setData_saida(Date data_saida) {
-	// this.data_saida = data_saida;
-	// }
-	//
-	// public Date getData_desistencia() {
-	// return data_desistencia;
-	// }
-	//
-	// public void setData_desistencia(Date data_desistencia) {
-	// this.data_desistencia = data_desistencia;
-	// }
-	//
-	// public List<AtoIndisciplinar> getAtosIndisciplinares() {
-	// return atosIndisciplinares;
-	// }
-	//
-	// public void setAtosIndisciplinares(List<AtoIndisciplinar>
-	// atosIndisciplinares) {
-	// this.atosIndisciplinares = atosIndisciplinares;
-	// }
-	//
-	// public Pais getPais() {
-	// return pais;
-	// }
-	//
-	// public void setPais(Pais pais) {
-	// this.pais = pais;
-	// }
-	//
-	// public Endereco getEndereco() {
-	// return endereco;
-	// }
-	//
-	// public void setEndereco(Endereco endereco) {
-	// this.endereco = endereco;
-	// }
-	//
-	// public Quarto getQuarto() {
-	// return quarto;
-	// }
-	//
-	// public void setQuarto(Quarto quarto) {
-	// this.quarto = quarto;
-	// }
-	//
-	// public Chamada getChamada() {
-	// return chamada;
-	// }
-	//
-	// public void setChamada(Chamada chamada) {
-	// this.chamada = chamada;
-	// }
-	//
-	// // GETTERS E SETTERS
+	// Um interno esta em uma chamada.
+	@OneToOne(optional = false, fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
+	@JoinColumn(name = "chamada_fk", nullable = false, unique = true)
+	private Chamada chamada;
+
+	public String getCurso() {
+		return curso;
+	}
+
+	public void setCurso(String curso) {
+		this.curso = curso;
+	}
+
+	public Integer getIdade() {
+		return idade;
+	}
+
+	public void setIdade(Integer idade) {
+		this.idade = idade;
+	}
+
+	public Date getDtNasc() {
+		return dtNasc;
+	}
+
+	public void setDtNasc(Date dtNasc) {
+		this.dtNasc = dtNasc;
+	}
+
+	public String getContaBanco() {
+		return contaBanco;
+	}
+
+	public void setContaBanco(String contaBanco) {
+		this.contaBanco = contaBanco;
+	}
+
+	public String getAgenciaBanco() {
+		return agenciaBanco;
+	}
+
+	public void setAgenciaBanco(String agenciaBanco) {
+		this.agenciaBanco = agenciaBanco;
+	}
+
+	public Integer getDiaLimpeza() {
+		return diaLimpeza;
+	}
+
+	public void setDiaLimpeza(Integer diaLimpeza) {
+		this.diaLimpeza = diaLimpeza;
+	}
+
+	public String getMotivo() {
+		return motivo;
+	}
+
+	public void setMotivo(String motivo) {
+		this.motivo = motivo;
+	}
+
+	public String getProblemaSaude() {
+		return problemaSaude;
+	}
+
+	public void setProblemaSaude(String problemaSaude) {
+		this.problemaSaude = problemaSaude;
+	}
+
+	public Boolean getDesistencia() {
+		return desistencia;
+	}
+
+	public void setDesistencia(Boolean desistencia) {
+		this.desistencia = desistencia;
+	}
+
+	public Date getDataSaida() {
+		return dataSaida;
+	}
+
+	public void setDataSaida(Date dataSaida) {
+		this.dataSaida = dataSaida;
+	}
+
+	public List<AtoIndisciplinar> getAtosIndisciplinares() {
+		return atosIndisciplinares;
+	}
+
+	public void setAtosIndisciplinares(List<AtoIndisciplinar> atosIndisciplinares) {
+		this.atosIndisciplinares = atosIndisciplinares;
+	}
+
+	public Pais getPais() {
+		return pais;
+	}
+
+	public void setPais(Pais pais) {
+		this.pais = pais;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public Quarto getQuarto() {
+		return quarto;
+	}
+
+	public void setQuarto(Quarto quarto) {
+		this.quarto = quarto;
+	}
+
+	public Chamada getChamada() {
+		return chamada;
+	}
+
+	public void setChamada(Chamada chamada) {
+		this.chamada = chamada;
+	}
+
+	// GETTERS E SETTERS
 }

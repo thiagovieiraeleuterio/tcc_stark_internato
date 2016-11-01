@@ -48,11 +48,10 @@ public class Chamada extends EntidadeBase {
 	@Column(nullable = true)
 	public String justificativa;
 
-	// RELACIONAMENTOS ...
-
+	// // RELACIONAMENTOS ...
+	//
 	// Uma Chamada esta associada a um Quartos.
-	@OneToMany(cascade = {
-			CascadeType.REFRESH }, targetEntity = Quarto.class, fetch = FetchType.LAZY, mappedBy = "chamada")
+	@OneToMany(cascade = { CascadeType.REFRESH }, fetch = FetchType.LAZY, mappedBy = "chamada")
 	private List<Quarto> quarto;
 
 	// Uma Chamada esta associada a muitos atos indisciplinares.
@@ -65,6 +64,54 @@ public class Chamada extends EntidadeBase {
 			CascadeType.REFRESH }, targetEntity = Interno.class, fetch = FetchType.LAZY, mappedBy = "chamada")
 	private List<Interno> interno;
 
-	// GETTERS E SETTERS ...
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+
+	public TipoPresenca getPresenca() {
+		return presenca;
+	}
+
+	public void setPresenca(TipoPresenca presenca) {
+		this.presenca = presenca;
+	}
+
+	public String getJustificativa() {
+		return justificativa;
+	}
+
+	public void setJustificativa(String justificativa) {
+		this.justificativa = justificativa;
+	}
+
+	public List<Quarto> getQuarto() {
+		return quarto;
+	}
+
+	public void setQuarto(List<Quarto> quarto) {
+		this.quarto = quarto;
+	}
+
+	public List<Interno> getInterno() {
+		return interno;
+	}
+
+	public void setInterno(List<Interno> interno) {
+		this.interno = interno;
+	}
+
+	// // GETTERS E SETTERS ...
 
 }

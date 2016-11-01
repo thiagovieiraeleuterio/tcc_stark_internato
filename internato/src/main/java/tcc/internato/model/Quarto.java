@@ -1,9 +1,14 @@
 package tcc.internato.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -28,54 +33,51 @@ public class Quarto extends EntidadeBase {
 	private Long id;
 
 	// // RELACIONAMENTOS
-	//
-	// // Um quarto possui um ou muitos internos.
-	// @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY,
-	// mappedBy = "quarto")
-	// private List<Interno> interno;
-	//
-	// // Em um quarto acontece muitas vistorias.
-	// @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY,
-	// mappedBy = "quarto")
-	// private List<Vistoria> vistoria;
-	//
-	// // Um quarto está associado a muitas chamadas.
-	// @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY,
-	// mappedBy = "quarto")
-	// private List<Chamada> chamada;
-	//
-	// public Long getId() {
-	// return id;
-	// }
-	//
-	// public void setId(Long id) {
-	// this.id = id;
-	// }
-	//
-	// public List<Interno> getInternos() {
-	// return interno;
-	// }
-	//
-	// public void setInternos(List<Interno> internos) {
-	// this.interno = interno;
-	// }
-	//
-	// public List<Vistoria> getVistorias() {
-	// return vistoria;
-	// }
-	//
-	// public void setVistorias(List<Vistoria> vistorias) {
-	// this.vistoria = vistoria;
-	// }
-	//
-	// public List<Chamada> getChamada() {
-	// return chamada;
-	// }
-	//
-	// public void setChamada(List<Chamada> chamada) {
-	// this.chamada = chamada;
-	// }
-	//
+
+	// Um quarto possui um ou muitos internos.
+	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "quarto")
+	private List<Interno> interno;
+
+	// Em um quarto acontece muitas vistorias.
+	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "quarto")
+	private List<Vistoria> vistoria;
+
+	// Um quarto está associado a muitas chamadas.
+	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "quarto")
+	private List<Chamada> chamada;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<Interno> getInternos() {
+		return interno;
+	}
+
+	public void setInternos(List<Interno> internos) {
+		this.interno = interno;
+	}
+
+	public List<Vistoria> getVistorias() {
+		return vistoria;
+	}
+
+	public void setVistorias(List<Vistoria> vistorias) {
+		this.vistoria = vistoria;
+	}
+
+	public List<Chamada> getChamada() {
+		return chamada;
+	}
+
+	public void setChamada(List<Chamada> chamada) {
+		this.chamada = chamada;
+	}
+
 	// // GETTERS E SETTERS
 
 }
