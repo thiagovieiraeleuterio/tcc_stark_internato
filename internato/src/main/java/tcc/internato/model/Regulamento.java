@@ -19,10 +19,9 @@ import javax.persistence.Table;
 //
 @Entity
 @Table(name = "regulamento")
-public class Regulamento {
+public class Regulamento extends EntidadeBase {
 
 	@Id
-	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
@@ -32,30 +31,28 @@ public class Regulamento {
 	@Column(name = "descricao", nullable = false)
 	private String descricao;
 
-	// getters e setters
-
-	public Long getId_regulamento() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId_regulamento(Long id_regulamento) {
-		this.id = id_regulamento;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getApelido_regulamento() {
+	public String getApelido() {
 		return apelido;
 	}
 
-	public void setApelido_regulamento(String apelido_regulamento) {
-		this.apelido = apelido_regulamento;
+	public void setApelido(String apelido) {
+		this.apelido = apelido;
 	}
 
-	public String getDescricao_regulamento() {
+	public String getDescricao() {
 		return descricao;
 	}
 
-	public void setDescricao_regulamento(String descricao_regulamento) {
-		this.descricao = descricao_regulamento;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 }

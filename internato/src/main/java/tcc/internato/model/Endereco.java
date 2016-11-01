@@ -1,6 +1,7 @@
 package tcc.internato.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,110 +15,112 @@ import javax.persistence.Id;
 //  @ Author : 
 //
 //
+import javax.persistence.Table;
 
-//@Entity
-public class Endereco {
+@Entity
+@Table(name = "endereco")
+public class Endereco extends EntidadeBase {
 	@Column(name = "id_endereco")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "cidade_interno", nullable = false)
+	@Column(nullable = false)
 	public String cidade;
 
-	@Column(name = "estado_interno", nullable = false)
-	public String estado;
+	@Column(length = 2, nullable = false)
+	public String uf;
 
-	@Column(name = "cep_interno", nullable = false)
+	@Column(length = 8, nullable = false)
 	public int cep;
 
-	@Column(name = "endereco_interno", nullable = false)
-	public String endereco;
+	@Column(nullable = false)
+	public String bairro;
 
-	@Column(name = "avenida_interno", nullable = false)
-	public String avenida;
+	@Column(length = 1000, nullable = false)
+	public String logradouro;
 
-	@Column(name = "apt_interno")
-	public String apt;
-
-	@Column(name = "numero_casa_interno")
+	@Column
 	public int numero;
 
-	@Column(nullable = false)
-	public String reside_com;
+	@Column(length = 10)
+	public String complemento;
 
-	// getters e setters
+	@Column(name = "reside_com", nullable = false)
+	public String resideCom;
 
-	public Long getId_endereco() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId_endereco(Long id_endereco) {
-		this.id = id_endereco;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getCidade_interno() {
+	public String getCidade() {
 		return cidade;
 	}
 
-	public void setCidade_interno(String cidade_interno) {
-		this.cidade = cidade_interno;
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
 
-	public String getEstado_interno() {
-		return estado;
+	public String getUf() {
+		return uf;
 	}
 
-	public void setEstado_interno(String estado_interno) {
-		this.estado = estado_interno;
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
 
-	public int getCep_interno() {
+	public int getCep() {
 		return cep;
 	}
 
-	public void setCep_interno(int cep_interno) {
-		this.cep = cep_interno;
+	public void setCep(int cep) {
+		this.cep = cep;
 	}
 
-	public String getEndereco_interno() {
-		return endereco;
+	public String getBairro() {
+		return bairro;
 	}
 
-	public void setEndereco_interno(String endereco_interno) {
-		this.endereco = endereco_interno;
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
 	}
 
-	public String getAvenida_interno() {
-		return avenida;
+	public String getLogradouro() {
+		return logradouro;
 	}
 
-	public void setAvenida_interno(String avenida_interno) {
-		this.avenida = avenida_interno;
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
 	}
 
-	public String getApt_interno() {
-		return apt;
-	}
-
-	public void setApt_interno(String apt_interno) {
-		this.apt = apt_interno;
-	}
-
-	public int getNumero_casa_interno() {
+	public int getNumero() {
 		return numero;
 	}
 
-	public void setNumero_casa_interno(int numero_casa_interno) {
-		this.numero = numero_casa_interno;
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
 
-	public String getReside_com() {
-		return reside_com;
+	public String getComplemento() {
+		return complemento;
 	}
 
-	public void setReside_com(String reside_com) {
-		this.reside_com = reside_com;
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
+
+	public String getResideCom() {
+		return resideCom;
+	}
+
+	public void setResideCom(String resideCom) {
+		this.resideCom = resideCom;
+	}
+
+	// getters e setters
 
 }

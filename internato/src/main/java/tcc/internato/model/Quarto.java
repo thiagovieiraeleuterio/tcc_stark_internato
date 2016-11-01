@@ -1,14 +1,11 @@
 package tcc.internato.model;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.FetchType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 //
 //
@@ -21,40 +18,64 @@ import javax.persistence.OneToMany;
 //
 //
 
-//@Entity
-public class Quarto {
-	@Column(name = "id_quarto")
+@Entity
+@Table(name = "quarto")
+@PrimaryKeyJoinColumn(name = "id_quarto")
+public class Quarto extends EntidadeBase {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column
-	private Chamada chamada;
-
-	// RELACIONAMENTOS
-
-	@OneToMany(cascade = CascadeType.REFRESH, targetEntity = Interno.class, fetch = FetchType.LAZY, mappedBy = "quarto")
-	private List<Interno> internos;
-
-	@OneToMany(cascade = CascadeType.REFRESH, targetEntity = Interno.class, fetch = FetchType.LAZY, mappedBy = "quarto")
-	private List<Vistoria> vistorias;
-
-	// getter e setter
-
-	@OneToMany(cascade = CascadeType.ALL, targetEntity = Interno.class, fetch = FetchType.LAZY, mappedBy = "quarto")
-	private List<Interno> internos;
-
-	@Column
-	private Vistoria vistoria;
-
-	// getter e setter
-
-	public Long getId_quarto() {
-		return id;
-	}
-
-	public void setId_quarto(Long id_quarto) {
-		this.id = id_quarto;
-	}
+	// // RELACIONAMENTOS
+	//
+	// // Um quarto possui um ou muitos internos.
+	// @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY,
+	// mappedBy = "quarto")
+	// private List<Interno> interno;
+	//
+	// // Em um quarto acontece muitas vistorias.
+	// @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY,
+	// mappedBy = "quarto")
+	// private List<Vistoria> vistoria;
+	//
+	// // Um quarto está associado a muitas chamadas.
+	// @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY,
+	// mappedBy = "quarto")
+	// private List<Chamada> chamada;
+	//
+	// public Long getId() {
+	// return id;
+	// }
+	//
+	// public void setId(Long id) {
+	// this.id = id;
+	// }
+	//
+	// public List<Interno> getInternos() {
+	// return interno;
+	// }
+	//
+	// public void setInternos(List<Interno> internos) {
+	// this.interno = interno;
+	// }
+	//
+	// public List<Vistoria> getVistorias() {
+	// return vistoria;
+	// }
+	//
+	// public void setVistorias(List<Vistoria> vistorias) {
+	// this.vistoria = vistoria;
+	// }
+	//
+	// public List<Chamada> getChamada() {
+	// return chamada;
+	// }
+	//
+	// public void setChamada(List<Chamada> chamada) {
+	// this.chamada = chamada;
+	// }
+	//
+	// // GETTERS E SETTERS
 
 }

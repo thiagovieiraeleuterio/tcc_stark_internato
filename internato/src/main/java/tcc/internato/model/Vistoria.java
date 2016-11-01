@@ -1,18 +1,14 @@
 package tcc.internato.model;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.FetchType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 //
 //
@@ -24,51 +20,88 @@ import javax.persistence.PrimaryKeyJoinColumn;
 //  @ Author : 
 //
 //
-//@Entity
-public class Vistoria {
-	@Column(name = "id_vistoria")
+@Entity
+@Table(name = "vistoria")
+@PrimaryKeyJoinColumn(name = "id_vistoria")
+public class Vistoria extends EntidadeBase {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "data_vistoria", nullable = false)
+	@Column(nullable = false)
 	public Date data;
 
 	@Column(name = "nota_limpeza", nullable = false)
-	public int nota;
+	public int notaLimpeza;
 
-	// RELACIONAMENTOS
+	// // RELACIONAMENTOS ...
+	//
+	// // Uma vistoria está associado a um quarto.
+	// @OneToOne(optional = false, fetch = FetchType.EAGER, cascade = {
+	// CascadeType.REFRESH })
+	// @JoinColumn(name = "quarto_fk", nullable = false, unique = true)
+	// private Quarto quarto;
+	//
+	// // um vistoria está associada a 0 ou muitos atos indisciplinares.
+	// @OneToMany(cascade = CascadeType.REFRESH, targetEntity = Interno.class,
+	// fetch = FetchType.LAZY, mappedBy = "vistoria")
+	// private List<AtoIndisciplinar> atosIndisciplinares;
+	//
+	// // Uma vistoria está associado a um Servidor.
+	// @OneToOne(optional = false, fetch = FetchType.EAGER, cascade = {
+	// CascadeType.REFRESH })
+	// @JoinColumn(name = "servidor_fk", nullable = false, unique = true)
+	// private Servidor servidor;
+	//
+	// public Long getId() {
+	// return id;
+	// }
+	//
+	// public void setId(Long id) {
+	// this.id = id;
+	// }
+	//
+	// public Date getData() {
+	// return data;
+	// }
+	//
+	// public void setData(Date data) {
+	// this.data = data;
+	// }
+	//
+	// public int getNotaLimpeza() {
+	// return notaLimpeza;
+	// }
+	//
+	// public void setNotaLimpeza(int notaLimpeza) {
+	// this.notaLimpeza = notaLimpeza;
+	// }
+	//
+	// public Quarto getQuarto() {
+	// return quarto;
+	// }
+	//
+	// public void setQuarto(Quarto quarto) {
+	// this.quarto = quarto;
+	// }
+	//
+	// public List<AtoIndisciplinar> getAtosIndisciplinares() {
+	// return atosIndisciplinares;
+	// }
+	//
+	// public void setAtosIndisciplinares(List<AtoIndisciplinar>
+	// atosIndisciplinares) {
+	// this.atosIndisciplinares = atosIndisciplinares;
+	// }
+	//
+	// public Servidor getServidor() {
+	// return servidor;
+	// }
+	//
+	// public void setServidor(Servidor servidor) {
+	// this.servidor = servidor;
+	// }
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
-	@PrimaryKeyJoinColumn
-	@JoinColumn(name = "quarto_fk")
-	private Quarto quarto;
-
-	@OneToMany(cascade = CascadeType.REFRESH, targetEntity = Interno.class, fetch = FetchType.LAZY, mappedBy = "vistoria")
-	private List<AtoIndisciplinar> atosIndisciplinares;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getData() {
-		return data;
-	}
-
-	public void setData(Date data) {
-		this.data = data;
-	}
-
-	public int getNota() {
-		return nota;
-	}
-
-	public void setNota(int nota) {
-		this.nota = nota;
-	}
-
+	// GETTERS E SETTERS ...
 }
