@@ -1,6 +1,11 @@
 package tcc.internato.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -23,35 +28,28 @@ public class Servidor extends Pessoa {
 	// RELACIONAMENTOS ...
 
 	// TODO
-	// // Um servidor esta associado a muitos atos indisciplinares.
-	// @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY,
-	// mappedBy = "servidor")
-	// @JoinColumn(name = "servidor_fk")
-	// private List<AtoIndisciplinar> atoindisciplinares;
-	//
-	// // um servidor está associada a 0 ou muitas vistorias.
-	// @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY,
-	// mappedBy = "servidor")
-	// @JoinColumn(name = "servidor_fk")
-	// private List<Vistoria> vistoria;
-	//
-	// public List<AtoIndisciplinar> getAtoindisciplinares() {
-	// return atoindisciplinares;
-	// }
-	//
-	// public void setAtoindisciplinares(List<AtoIndisciplinar>
-	// atoindisciplinares) {
-	// this.atoindisciplinares = atoindisciplinares;
-	// }
-	//
-	// public List<Vistoria> getVistoria() {
-	// return vistoria;
-	// }
-	//
-	// public void setVistoria(List<Vistoria> vistoria) {
-	// this.vistoria = vistoria;
-	// }
+	// Um servidor esta associado a muitos atos indisciplinares.
+	@OneToMany(cascade = CascadeType.REFRESH, targetEntity = AtoIndisciplinar.class, fetch = FetchType.LAZY, mappedBy = "servidores")
+	private List<AtoIndisciplinar> atoindisciplinares;
 
-	// GETTERS E SETTERS ...
+	// um servidor está associada a 0 ou muitas vistorias.
+	@OneToMany(cascade = CascadeType.REFRESH, targetEntity = Vistoria.class, fetch = FetchType.LAZY, mappedBy = "servidores")
+	private List<Vistoria> vistorias;
+
+	public List<AtoIndisciplinar> getAtoindisciplinares() {
+		return atoindisciplinares;
+	}
+
+	public void setAtoindisciplinares(List<AtoIndisciplinar> atoindisciplinares) {
+		this.atoindisciplinares = atoindisciplinares;
+	}
+
+	public List<Vistoria> getVistorias() {
+		return vistorias;
+	}
+
+	public void setVistorias(List<Vistoria> vistorias) {
+		this.vistorias = vistorias;
+	}
 
 }

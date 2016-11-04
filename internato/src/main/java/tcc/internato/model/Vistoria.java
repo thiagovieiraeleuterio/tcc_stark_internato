@@ -1,7 +1,6 @@
 package tcc.internato.model;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -44,18 +42,14 @@ public class Vistoria extends EntidadeBase {
 	// // RELACIONAMENTOS ...
 	//
 	// Uma vistoria está associado a um quarto.
-	@OneToOne(optional = false, fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
+	@OneToOne(optional = false, fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	@JoinColumn(name = "quarto_fk", nullable = false, unique = true)
-	private Quarto quarto;
-
-	// um vistoria está associada a 0 ou muitos atos indisciplinares.
-	@OneToMany(cascade = CascadeType.REFRESH, targetEntity = Interno.class, fetch = FetchType.LAZY, mappedBy = "vistoria")
-	private List<AtoIndisciplinar> atosIndisciplinares;
+	private Quarto quartos;
 
 	// Uma vistoria está associado a um Servidor.
-	@OneToOne(optional = false, fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
+	@OneToOne(optional = false, fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	@JoinColumn(name = "servidor_fk", nullable = false, unique = true)
-	private Servidor servidor;
+	private Servidor servidores;
 
 	public Long getId() {
 		return id;
@@ -81,29 +75,27 @@ public class Vistoria extends EntidadeBase {
 		this.notaLimpeza = notaLimpeza;
 	}
 
-	public Quarto getQuarto() {
-		return quarto;
+	public Quarto getQuartos() {
+		return quartos;
 	}
 
-	public void setQuarto(Quarto quarto) {
-		this.quarto = quarto;
+	public void setQuartos(Quarto quartos) {
+		this.quartos = quartos;
 	}
 
-	public List<AtoIndisciplinar> getAtosIndisciplinares() {
-		return atosIndisciplinares;
+	public Servidor getServidores() {
+		return servidores;
 	}
 
-	public void setAtosIndisciplinares(List<AtoIndisciplinar> atosIndisciplinares) {
-		this.atosIndisciplinares = atosIndisciplinares;
+	public void setServidores(Servidor servidores) {
+		this.servidores = servidores;
 	}
 
-	public Servidor getServidor() {
-		return servidor;
-	}
-
-	public void setServidor(Servidor servidor) {
-		this.servidor = servidor;
-	}
+	// // um vistoria está associada a 0 ou muitos atos indisciplinares.
+	// @OneToMany(cascade = CascadeType.REFRESH, targetEntity = Interno.class,
+	// fetch = FetchType.LAZY, mappedBy = "vistoria")
+	// private List<AtoIndisciplinar> atosIndisciplinares;
+	//
 
 	// GETTERS E SETTERS ...
 }

@@ -11,9 +11,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -48,21 +48,21 @@ public class Chamada extends EntidadeBase {
 	@Column(nullable = true)
 	public String justificativa;
 
-	// // RELACIONAMENTOS ...
-	//
-	// Uma Chamada esta associada a um Quartos.
-	@OneToMany(cascade = { CascadeType.REFRESH }, fetch = FetchType.LAZY, mappedBy = "chamada")
-	private List<Quarto> quarto;
-
-	// Uma Chamada esta associada a muitos atos indisciplinares.
-	@OneToMany(cascade = {
-			CascadeType.REFRESH }, targetEntity = Chamada.class, fetch = FetchType.LAZY, mappedBy = "chamada")
-	private List<AtoIndisciplinar> atoindisciplinar;
+	// // // RELACIONAMENTOS ...
 
 	// Uma Chamada esta associada a muitos Internos.
 	@OneToMany(cascade = {
-			CascadeType.REFRESH }, targetEntity = Interno.class, fetch = FetchType.LAZY, mappedBy = "chamada")
-	private List<Interno> interno;
+			CascadeType.REFRESH }, targetEntity = Interno.class, fetch = FetchType.LAZY, mappedBy = "chamadas")
+	private List<Interno> internos;
+
+	// Muitas Chamada esta associada a um Quartos.
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+	@JoinColumn(name = "quartos_fk", nullable = false)
+	private Quarto quartos;
+
+	public void setInternos(List<Interno> internos) {
+		this.internos = internos;
+	}
 
 	public Long getId() {
 		return id;
@@ -96,22 +96,25 @@ public class Chamada extends EntidadeBase {
 		this.justificativa = justificativa;
 	}
 
-	public List<Quarto> getQuarto() {
-		return quarto;
+	public Quarto getQuartos() {
+		return quartos;
 	}
 
-	public void setQuarto(List<Quarto> quarto) {
-		this.quarto = quarto;
+	public void setQuartos(Quarto quartos) {
+		this.quartos = quartos;
 	}
 
-	public List<Interno> getInterno() {
-		return interno;
+	public List<Interno> getInternos() {
+		return internos;
 	}
 
-	public void setInterno(List<Interno> interno) {
-		this.interno = interno;
-	}
+	// //
 
-	// // GETTERS E SETTERS ...
+	// // Uma Chamada esta associada a muitos atos indisciplinares.
+	// @OneToMany(cascade = {
+	// CascadeType.REFRESH }, targetEntity = Chamada.class, fetch =
+	// FetchType.LAZY, mappedBy = "chamada")
+	// private List<AtoIndisciplinar> atoindisciplinar;
+	//
 
 }

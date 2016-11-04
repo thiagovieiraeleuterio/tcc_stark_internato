@@ -35,16 +35,16 @@ public class Quarto extends EntidadeBase {
 	// // RELACIONAMENTOS
 
 	// Um quarto possui um ou muitos internos.
-	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "quarto")
-	private List<Interno> interno;
-
-	// Em um quarto acontece muitas vistorias.
-	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "quarto")
-	private List<Vistoria> vistoria;
+	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "quartos")
+	private List<Interno> internos;
 
 	// Um quarto está associado a muitas chamadas.
-	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "quarto")
-	private List<Chamada> chamada;
+	@OneToMany(cascade = CascadeType.REFRESH, targetEntity = Chamada.class, fetch = FetchType.LAZY, mappedBy = "quartos")
+	private List<Chamada> chamadas;
+
+	// Em um quarto acontece muitas vistorias.
+	@OneToMany(cascade = CascadeType.REFRESH, targetEntity = Vistoria.class, fetch = FetchType.LAZY, mappedBy = "quartos")
+	private List<Vistoria> vistorias;
 
 	public Long getId() {
 		return id;
@@ -55,27 +55,27 @@ public class Quarto extends EntidadeBase {
 	}
 
 	public List<Interno> getInternos() {
-		return interno;
+		return internos;
 	}
 
 	public void setInternos(List<Interno> internos) {
-		this.interno = interno;
+		this.internos = internos;
+	}
+
+	public List<Chamada> getChamadas() {
+		return chamadas;
+	}
+
+	public void setChamadas(List<Chamada> chamadas) {
+		this.chamadas = chamadas;
 	}
 
 	public List<Vistoria> getVistorias() {
-		return vistoria;
+		return vistorias;
 	}
 
 	public void setVistorias(List<Vistoria> vistorias) {
-		this.vistoria = vistoria;
-	}
-
-	public List<Chamada> getChamada() {
-		return chamada;
-	}
-
-	public void setChamada(List<Chamada> chamada) {
-		this.chamada = chamada;
+		this.vistorias = vistorias;
 	}
 
 	// // GETTERS E SETTERS

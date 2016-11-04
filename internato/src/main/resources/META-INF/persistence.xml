@@ -8,12 +8,12 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<!-- entidade mapeada -->
 		<class>tcc.internato.model.AtoIndisciplinar</class>
-		<class>tcc.internato.model.Chamada</class>
+		<class>tcc.internato.model.Chamada</class> 
 		<class>tcc.internato.model.Endereco</class>
 		<class>tcc.internato.model.Interno</class>
 		<class>tcc.internato.model.Pais</class>
 		<class>tcc.internato.model.Pessoa</class>
-		<class>tcc.internato.model.Quarto</class>
+		<class>tcc.internato.model.Quarto</class> 
 		<class>tcc.internato.model.Regulamento</class>
 		<class>tcc.internato.model.Servidor</class>
 		<class>tcc.internato.model.Vistoria</class> 

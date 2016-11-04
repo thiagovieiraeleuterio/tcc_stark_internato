@@ -66,29 +66,28 @@ public class Interno extends Pessoa {
 	// // RELACIONAMENTOS
 	//
 	// Um interno possui um ou muitos atos indisciplinares.
-	@OneToMany(cascade = {
-			CascadeType.REFRESH }, targetEntity = AtoIndisciplinar.class, fetch = FetchType.LAZY, mappedBy = "interno")
-	private List<AtoIndisciplinar> atosIndisciplinares;
-
+	@OneToMany(fetch = FetchType.LAZY, targetEntity = AtoIndisciplinar.class, mappedBy = "internos")
+	private List<AtoIndisciplinar> atoindisciplinares;
+	//
 	// Um interno possui um pais.
-	@OneToOne(optional = false, fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
+	@OneToOne(optional = false, fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	@JoinColumn(name = "pais_fk", nullable = false, unique = true)
 	private Pais pais;
 
 	// Um interno possui um endereço.
-	@OneToOne(optional = false, fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
+	@OneToOne(optional = false, fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	@JoinColumn(name = "endereco_fk", nullable = false, unique = true)
 	private Endereco endereco;
 
 	// Um interno está associado a um quarto.
-	@OneToOne(optional = false, fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
+	@OneToOne(optional = false, fetch = FetchType.EAGER, targetEntity = Quarto.class, cascade = { CascadeType.REFRESH })
 	@JoinColumn(name = "quarto_fk", nullable = false, unique = true)
-	private Quarto quarto;
-	//
+	private Quarto quartos;
+
 	// Um interno esta em uma chamada.
-	@OneToOne(optional = false, fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
+	@OneToOne(optional = false, fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	@JoinColumn(name = "chamada_fk", nullable = false, unique = true)
-	private Chamada chamada;
+	private Chamada chamadas;
 
 	public String getCurso() {
 		return curso;
@@ -170,12 +169,12 @@ public class Interno extends Pessoa {
 		this.dataSaida = dataSaida;
 	}
 
-	public List<AtoIndisciplinar> getAtosIndisciplinares() {
-		return atosIndisciplinares;
+	public List<AtoIndisciplinar> getAtoindisciplinares() {
+		return atoindisciplinares;
 	}
 
-	public void setAtosIndisciplinares(List<AtoIndisciplinar> atosIndisciplinares) {
-		this.atosIndisciplinares = atosIndisciplinares;
+	public void setAtoindisciplinares(List<AtoIndisciplinar> atoindisciplinares) {
+		this.atoindisciplinares = atoindisciplinares;
 	}
 
 	public Pais getPais() {
@@ -194,21 +193,22 @@ public class Interno extends Pessoa {
 		this.endereco = endereco;
 	}
 
-	public Quarto getQuarto() {
-		return quarto;
+	public Quarto getQuartos() {
+		return quartos;
 	}
 
-	public void setQuarto(Quarto quarto) {
-		this.quarto = quarto;
+	public void setQuartos(Quarto quartos) {
+		this.quartos = quartos;
 	}
 
-	public Chamada getChamada() {
-		return chamada;
+	public Chamada getChamadas() {
+		return chamadas;
 	}
 
-	public void setChamada(Chamada chamada) {
-		this.chamada = chamada;
+	public void setChamadas(Chamada chamadas) {
+		this.chamadas = chamadas;
 	}
 
 	// GETTERS E SETTERS
+
 }
