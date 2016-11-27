@@ -1,7 +1,6 @@
 package tcc.internato.model;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import tcc.internato.enumeration.TipoPresenca;
@@ -51,18 +49,16 @@ public class Chamada extends EntidadeBase {
 	// // // RELACIONAMENTOS ...
 
 	// Uma Chamada esta associada a muitos Internos.
-	@OneToMany(cascade = {
-			CascadeType.REFRESH }, targetEntity = Interno.class, fetch = FetchType.LAZY, mappedBy = "chamadas")
-	private List<Interno> internos;
+	// TODO acertar mapeamento abaixo para ManyToMany
+	// @OneToMany(cascade = {
+	// CascadeType.REFRESH }, targetEntity = Interno.class, fetch =
+	// FetchType.LAZY, mappedBy = "chamada")
+	// private List<Interno> internos;
 
 	// Muitas Chamada esta associada a um Quartos.
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	@JoinColumn(name = "quartos_fk", nullable = false)
 	private Quarto quartos;
-
-	public void setInternos(List<Interno> internos) {
-		this.internos = internos;
-	}
 
 	public Long getId() {
 		return id;
@@ -103,18 +99,5 @@ public class Chamada extends EntidadeBase {
 	public void setQuartos(Quarto quartos) {
 		this.quartos = quartos;
 	}
-
-	public List<Interno> getInternos() {
-		return internos;
-	}
-
-	// //
-
-	// // Uma Chamada esta associada a muitos atos indisciplinares.
-	// @OneToMany(cascade = {
-	// CascadeType.REFRESH }, targetEntity = Chamada.class, fetch =
-	// FetchType.LAZY, mappedBy = "chamada")
-	// private List<AtoIndisciplinar> atoindisciplinar;
-	//
 
 }

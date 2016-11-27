@@ -32,7 +32,7 @@ public class Endereco extends EntidadeBase {
 	public String uf;
 
 	@Column(length = 8, nullable = false)
-	public int cep;
+	public String cep;
 
 	@Column(nullable = false)
 	public String bairro;
@@ -73,11 +73,11 @@ public class Endereco extends EntidadeBase {
 		this.uf = uf;
 	}
 
-	public int getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(int cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 
@@ -119,6 +119,11 @@ public class Endereco extends EntidadeBase {
 
 	public void setResideCom(String resideCom) {
 		this.resideCom = resideCom;
+	}
+
+	public Long getID() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	// getters e setters

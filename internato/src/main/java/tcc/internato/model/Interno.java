@@ -45,7 +45,10 @@ public class Interno extends Pessoa {
 	private String contaBanco;
 
 	@Column
-	private String agenciaBanco;
+	private String agencia;
+
+	@Column
+	private String banco;
 
 	@Column
 	private Integer diaLimpeza;
@@ -70,24 +73,31 @@ public class Interno extends Pessoa {
 	private List<AtoIndisciplinar> atoindisciplinares;
 	//
 	// Um interno possui um pais.
-	@OneToOne(optional = false, fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "pais_fk", nullable = false, unique = true)
+	@OneToOne(optional = false, fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinColumn(name = "pais_fk", nullable = false)
 	private Pais pais;
 
 	// Um interno possui um endereço.
-	@OneToOne(optional = false, fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "endereco_fk", nullable = false, unique = true)
+	@OneToOne(optional = false, fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinColumn(name = "endereco_fk", nullable = false)
 	private Endereco endereco;
 
 	// Um interno está associado a um quarto.
-	@OneToOne(optional = false, fetch = FetchType.EAGER, targetEntity = Quarto.class, cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "quarto_fk", nullable = false, unique = true)
-	private Quarto quartos;
+	@OneToOne(optional = false, fetch = FetchType.EAGER, targetEntity = Quarto.class, cascade = { CascadeType.PERSIST,
+			CascadeType.MERGE })
+	@JoinColumn(name = "quarto_fk", nullable = false)
+	private Quarto quarto;
 
-	// Um interno esta em uma chamada.
-	@OneToOne(optional = false, fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
-	@JoinColumn(name = "chamada_fk", nullable = false, unique = true)
-	private Chamada chamadas;
+	// Um interno esta em várias chamada.
+	// @OneToOne(optional = false, fetch = FetchType.LAZY, cascade = {
+	// CascadeType.REFRESH })
+	// @JoinColumn(name = "chamada_fk", nullable = false)
+	// private List<Chamada> chamadas;
+	// TODO corrigir mapeamento acima
+
+	public Interno() {
+		// setChamadas(new ArrayList<Chamada>());
+	}
 
 	public String getCurso() {
 		return curso;
@@ -121,12 +131,20 @@ public class Interno extends Pessoa {
 		this.contaBanco = contaBanco;
 	}
 
-	public String getAgenciaBanco() {
-		return agenciaBanco;
+	public String getAgencia() {
+		return agencia;
 	}
 
-	public void setAgenciaBanco(String agenciaBanco) {
-		this.agenciaBanco = agenciaBanco;
+	public void setAgencia(String agencia) {
+		this.agencia = agencia;
+	}
+
+	public String getBanco() {
+		return banco;
+	}
+
+	public void setBanco(String banco) {
+		this.banco = banco;
 	}
 
 	public Integer getDiaLimpeza() {
@@ -193,20 +211,12 @@ public class Interno extends Pessoa {
 		this.endereco = endereco;
 	}
 
-	public Quarto getQuartos() {
-		return quartos;
+	public Quarto getQuarto() {
+		return quarto;
 	}
 
-	public void setQuartos(Quarto quartos) {
-		this.quartos = quartos;
-	}
-
-	public Chamada getChamadas() {
-		return chamadas;
-	}
-
-	public void setChamadas(Chamada chamadas) {
-		this.chamadas = chamadas;
+	public void setQuarto(Quarto quarto) {
+		this.quarto = quarto;
 	}
 
 	// GETTERS E SETTERS

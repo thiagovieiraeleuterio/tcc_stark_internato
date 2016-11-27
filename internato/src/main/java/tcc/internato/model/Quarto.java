@@ -1,5 +1,6 @@
 package tcc.internato.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -35,7 +36,7 @@ public class Quarto extends EntidadeBase {
 	// // RELACIONAMENTOS
 
 	// Um quarto possui um ou muitos internos.
-	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "quartos")
+	@OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "quarto")
 	private List<Interno> internos;
 
 	// Um quarto está associado a muitas chamadas.
@@ -45,6 +46,12 @@ public class Quarto extends EntidadeBase {
 	// Em um quarto acontece muitas vistorias.
 	@OneToMany(cascade = CascadeType.REFRESH, targetEntity = Vistoria.class, fetch = FetchType.LAZY, mappedBy = "quartos")
 	private List<Vistoria> vistorias;
+
+	public Quarto() {
+		setInternos(new ArrayList<Interno>());
+		setChamadas(new ArrayList<Chamada>());
+		setVistorias(new ArrayList<Vistoria>());
+	}
 
 	public Long getId() {
 		return id;

@@ -119,4 +119,9 @@ public class AtoIndisciplinar extends EntidadeBase {
 		this.regulamentos = regulamentos;
 	}
 
+	public Long getID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

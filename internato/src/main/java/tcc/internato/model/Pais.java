@@ -38,11 +38,11 @@ public class Pais extends EntidadeBase {
 	@Column(name = "profissao_mae")
 	public String profissaoMae;
 
-	@Column(name = "telefone_pai")
-	public int telefonePai;
+	@Column(name = "telefone_pai", length = 11)
+	public String telefonePai;
 
-	@Column(name = "telefone_mae")
-	public int telefoneMae;
+	@Column(name = "telefone_mae", length = 11)
+	public String telefoneMae;
 
 	@Column(name = "email_responsavel")
 	public String emailReponsavel;
@@ -87,19 +87,19 @@ public class Pais extends EntidadeBase {
 		this.profissaoMae = profissaoMae;
 	}
 
-	public int getTelefonePai() {
+	public String getTelefonePai() {
 		return telefonePai;
 	}
 
-	public void setTelefonePai(int telefonePai) {
+	public void setTelefonePai(String telefonePai) {
 		this.telefonePai = telefonePai;
 	}
 
-	public int getTelefoneMae() {
+	public String getTelefoneMae() {
 		return telefoneMae;
 	}
 
-	public void setTelefoneMae(int telefoneMae) {
+	public void setTelefoneMae(String telefoneMae) {
 		this.telefoneMae = telefoneMae;
 	}
 
@@ -109,6 +109,11 @@ public class Pais extends EntidadeBase {
 
 	public void setEmailReponsavel(String emailReponsavel) {
 		this.emailReponsavel = emailReponsavel;
+	}
+
+	public Long getID() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	// getters e setters

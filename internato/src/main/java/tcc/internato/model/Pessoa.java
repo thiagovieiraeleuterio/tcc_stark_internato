@@ -33,66 +33,66 @@ public class Pessoa extends EntidadeBase {
 	@Column(name = "nome_pessoa", nullable = false)
 	private String nome;
 
-	@Column(name = "cpf_pessoa", nullable = false)
-	private int cpf;
+	@Column(name = "cpf_pessoa", length = 11, nullable = false)
+	private String cpf;
 
 	@Column(name = "matricula_pessoa", nullable = false)
 	public String matricula;
 
-	// getters e setters
+	@Column(length = 11)
+	public String telefone;
 
-	public Long getId_pessoa() {
+	@Column
+	public String email;
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId_pessoa(Long id_pessoa) {
-		this.id = id_pessoa;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getNome_pessoa() {
+	public String getNome() {
 		return nome;
 	}
 
-	public void setNome_pessoa(String nome_pessoa) {
-		this.nome = nome_pessoa;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public int getCpf_pessoa() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf_pessoa(int cpf_pessoa) {
-		this.cpf = cpf_pessoa;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
-	public String getMatricula_pessoa() {
+	public String getMatricula() {
 		return matricula;
 	}
 
-	public void setMatricula_pessoa(String matricula_pessoa) {
-		this.matricula = matricula_pessoa;
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
 	}
 
-	public String getTelefone_pessoa() {
-		return telefone_pessoa;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setTelefone_pessoa(String telefone_pessoa) {
-		this.telefone_pessoa = telefone_pessoa;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
-	public String getEmail_pessoa() {
-		return email_pessoa;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEmail_pessoa(String email_pessoa) {
-		this.email_pessoa = email_pessoa;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	@Column
-	public String telefone_pessoa;
-
-	@Column
-	public String email_pessoa;
+	// getters e setters
 
 }
